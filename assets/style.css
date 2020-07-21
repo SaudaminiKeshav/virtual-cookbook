@@ -1,0 +1,52 @@
+#header {
+    background-color: coral;
+    text-align: center;
+    padding: 45px;
+}
+
+.navbar {
+    background-color: rgb(36, 207, 50);
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    padding-bottom: 25px;
+}
+
+.nav-link {
+    color: cornsilk;
+}
+
+.home {
+    background-color: rgb(40, 20, 220);
+    text-align: center;
+    padding: 3px;
+    margin-right: 10px;
+    border-radius: 20px;
+    width: 60px;
+    float: left;
+    list-style: none;
+}
+
+.searchBtn {
+    background-color: rgb(40, 20, 220);
+    text-align: center;
+    padding: 3px;
+    border-radius: 20px;
+    width: 60px;
+    float: left;
+    list-style: none;
+}
+
+#footer {
+    background-color: coral;
+    text-align: center;
+    clear: both;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.add-recipe {
+    float: right;
+}
