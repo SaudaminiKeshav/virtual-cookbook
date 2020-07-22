@@ -47,6 +47,24 @@
     width: 100%;
 }
 
+.results {
+    opacity: 1;
+    margin: 25px;
+}
+
+.result-card {
+    margin: 30px;
+    background-color: orange;
+    border: 5px solid yellow;
+    padding: 20px;
+    height: 180px
+}
+
+.details {
+    float: left;
+    margin-right: 30px;
+}
+
 .add-recipe {
     float: right;
 }
