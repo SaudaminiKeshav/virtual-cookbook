@@ -1,7 +1,12 @@
+body {
+    overflow-x: hidden;
+}
+
 #header {
     background-color: coral;
     text-align: center;
     padding: 45px;
+    width: 95%;
 }
 
 .navbar {
@@ -37,6 +42,14 @@
     list-style: none;
 }
 
+.add-recipe {
+    float: right;
+}
+
+.container {
+    padding: 45px;
+}
+
 #footer {
     background-color: coral;
     text-align: center;
@@ -45,8 +58,31 @@
     left: 0;
     bottom: 0;
     width: 100%;
+    z-index: 5;
 }
 
-.add-recipe {
-    float: right;
+/* Square recipe cards */
+#recipe-card {
+    float: left;
+    margin: 20px;
 }
+
+#recipe-title {
+    color: rgb(240, 240, 240);
+    background-color: rgb(26, 185, 66);
+}
+
+.demo-card-square.mdl-card {
+    width: 300px;
+    height: 300px;
+}
+
+.demo-card-square > .mdl-card__title {
+    color: #fff;
+    background: url("./images/food.jpg") bottom right 15% no-repeat #46B6AC;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/*---------------*/
