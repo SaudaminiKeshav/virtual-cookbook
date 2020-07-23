@@ -2,13 +2,6 @@ body {
     overflow-x: hidden;
 }
 
-#header {
-    background-color: coral;
-    text-align: center;
-    padding: 45px;
-    width: 95%;
-}
-
 .navbar {
     background-color: rgb(36, 207, 50);
     width: 100%;
@@ -42,23 +35,53 @@ body {
     list-style: none;
 }
 
+#header {
+    background-color: coral;
+    text-align: center;
+    padding: 45px;
+    width: 95%;
+}
+
 .add-recipe {
     float: right;
 }
 
-.container {
-    padding: 45px;
+#dialog {
+    width: 40%;
+    height: 600px;
 }
 
-#footer {
-    background-color: coral;
-    text-align: center;
-    clear: both;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 5;
+#dialog-title {
+    background: rgb(47, 255, 168);
+    height: 55px;
+}
+
+.input-labels {
+    font-size: 17px;
+}
+
+.recipe-inputs {
+    width: 90%;
+    padding: 12px;
+    font-size: 20px;
+}
+
+#save-btn {
+    background: rgb(47, 255, 168);
+    position: absolute;
+    bottom: 10px;
+}
+
+#cancel-btn {
+    background: rgb(47, 255, 168);
+    position: absolute;
+    bottom: 10px;
+    left: 3.5%;
+}
+
+/* search.html */
+.container-search {
+    padding: 45px;
 }
 
 #search-bar {
@@ -75,7 +98,6 @@ input[type=text] {
     transition: width 0.4s ease-in-out;
 }
   
-  /* When the input field gets focus, change its width to 100% */
 input[type=text]:focus {
     width: 20%;
 }
@@ -97,10 +119,7 @@ input[type=text]:focus {
     float: left;
     margin-right: 30px;
 }
-
-.add-recipe {
-    float: right;
-}
+/*---------------*/
 
 /* Square recipe cards */
 #recipe-card {
@@ -127,3 +146,14 @@ input[type=text]:focus {
     background-size: cover;
 }
 /*---------------*/
+
+#footer {
+    background-color: coral;
+    text-align: center;
+    clear: both;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+}
