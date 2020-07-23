@@ -1,4 +1,15 @@
 $(document).ready(function () {
+
+    let cookbook;
+    
+    if(localStorage.getItem("cookbookLocalStorage") === null) {
+        cookbook = [""];
+        localStorage.setItem("cookbookLocalStorage", JSON.stringify(cookbook));
+    } else {
+        cookbook = JSON.parse(localStorage.getItem("cookbookLocalStorage"));
+        //run render saved recipes function
+    }
+
     // let addRecipeBtn = $("#add-recipe-btn");
 
     // $(addRecipeBtn).on("click", function () {
@@ -15,16 +26,37 @@ $(document).ready(function () {
     //     // Use this function to show the whole recipe
     // });
 
-    retrieveRecipe();
+    let ingredientArray = [];
 
-    let ingredientArray = [""];
+    $("#ingredient-add").on("click", function(){
+        event.preventDefault();
+
+        let ingredient = $("#ingredient-input").val();
+        console.log(ingredient);
+
+        let li = $("<li>");
+        li.text(ingredient);
+        ingredientArray.push(ingredient);
+        console.log(ingredientArray)
+        $(".ingredient-list-search").append(li);
+
+        $("#ingredient-input").val("");
+
+    });
+
+    $("#recipe-search").on("click", function(){
+        event.preventDefault();
+
+        retrieveRecipe();
+    });
 
     function retrieveRecipe() {
         var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
         var ingredients = ingredientArray.join();
-        var numberOfRecipes = $("#number-of-recipes").val();
+        var numberOfRecipes = 5;
         var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
         //var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=6f8efb8f773b4ba3bc9fcb1c1d7d0e24&ingredients=apples,flour,sugar&number=2";
+
 
         $.ajax({
             url: recipeURL,
