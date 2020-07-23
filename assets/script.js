@@ -25,7 +25,7 @@ function retrieveRecipes () {
 
 
 var apiKey = "";
-var queryURL = `${apikey}`;
+var queryURL = `${apiKey}`;
 let searchResults = 10;
 
 $.ajax({
