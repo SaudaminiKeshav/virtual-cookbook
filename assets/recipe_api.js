@@ -1,45 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Cookbook</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="icon" href="assets/images/recipe.png"/>
-</head>
-<body>
-    <div class="navbar">
-        <ul class="nav">
-            <li class="home">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="searchBtn">
-              <a class="nav-link" href="search.html">Search</a>
-            </li>
-          </ul>
-    </div>
-    <div id="header">
-        <h1 id="title">Search</h1>
-    </div>
-
-    <div class="container">
-
-
-    </div>
-
-    <div id="footer">
-        <p>footer</p>
-    </div>
-    
-
-    <script src="assets/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-      retrieveRecipe();
+retrieveRecipe();
 
       ingredientArray = [];
 
@@ -86,6 +45,3 @@
 
         });
       }
-    </script>
-</body>
-</html>
