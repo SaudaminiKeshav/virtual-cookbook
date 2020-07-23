@@ -6,7 +6,6 @@
     <title>Virtual Cookbook</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
     <link rel="stylesheet" href="assets/style.css">
     <link rel="icon" href="assets/images/recipe.png"/>
@@ -29,7 +28,15 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <!--Search Bar here-->
+          <nav id="search-bar">
+            <form>
+              <input id="ingredient-input" type="text" name="search" placeholder="Search..">
+              <button id="ingredient-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Add +</button>
+              <br>
+              <button id="recipe-search" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Search</button>
+              <ul class="ingredient-list-search"></ul>
+            </form>
+          </nav>
         </div>
       </div>
 
@@ -55,8 +62,15 @@
     </div>
     
 
+<<<<<<< HEAD
     <!-- <script src="assets/script.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/recipe_api.js"></script>
+=======
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="assets/script.js"></script>
+    <!--<script src="assets/recipe_api.js"></script>-->
+>>>>>>> 7202eeaaad4d1bfa0aaa2dad843ac8d7d78de0fa
 </body>
 </html>
