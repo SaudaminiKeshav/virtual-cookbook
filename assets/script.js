@@ -9,8 +9,9 @@ $(document).ready(function () {
         cookbook = JSON.parse(localStorage.getItem("cookbookLocalStorage"));
         //run render saved recipes function
     }
-
-    // let addRecipeBtn = $("#add-recipe-btn");
+    
+    // Add button id from dialog here
+    // let addRecipeBtn = $("#");
 
     // $(addRecipeBtn).on("click", function () {
     //     let recipeCard = $("#recipe-card");
