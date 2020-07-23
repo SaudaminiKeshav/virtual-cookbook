@@ -1,13 +1,13 @@
 retrieveRecipe();
 
-      ingredientArray = [];
+      //ingredientArray = [""];
 
       function retrieveRecipe() {
         var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
-        var ingredients = ingredientArray.join();
-        var numberOfRecipes = $("#number-of-recipes").val();
-        var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
-        //var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=6f8efb8f773b4ba3bc9fcb1c1d7d0e24&ingredients=apples,flour,sugar&number=2";
+        //var ingredients = ingredientArray.join();
+        //var numberOfRecipes = $("#number-of-recipes").val();
+        //var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
+        var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=6f8efb8f773b4ba3bc9fcb1c1d7d0e24&ingredients=apples,flour,sugar&number=2";
 
         $.ajax({
         url: recipeURL,
