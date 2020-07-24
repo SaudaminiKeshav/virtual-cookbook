@@ -53,7 +53,7 @@ $(document).ready(function () {
             dialogClick();
         } else {
             $("#card-title").text(dialogTitleVal);
-            $(recipeCard).show();
+            recipeCard.show();
         }
     });
 
@@ -63,7 +63,7 @@ $(document).ready(function () {
 
     let openRecipeBtn = $("#open-recipe-btn");
 
-    $(openRecipeBtn).on("click", function() {
+    openRecipeBtn.on("click", function() {
         // *if open recipe btn is clicked, show the whole recipe for that given card
     });
 
