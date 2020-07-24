@@ -138,7 +138,7 @@ input[type=text]:focus {
 
 .demo-card-square > .mdl-card__title {
     color: #fff;
-    background: url("./images/food.jpg") bottom right 15% no-repeat #46B6AC;
+    /*background: url("") bottom right 15% no-repeat #46B6AC;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -191,6 +191,7 @@ input[type=text]:focus {
 #ingredient-input {
     height: 36px;
     font-size: 16px;
+}
 #footer {
     background-color: coral;
     text-align: center;
