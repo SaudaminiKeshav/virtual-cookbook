@@ -81,7 +81,6 @@ input[type=text]:focus {
 }
 
 .results {
-    opacity: 1;
     margin: 25px;
 }
 
@@ -132,24 +131,9 @@ input[type=text]:focus {
     background: none;
     border: none;
 }
-#recipe1 {
-    opacity: 0;
-}
-#recipe2 {
-    opacity: 0;
-}
-#recipe3 {
-    opacity: 0;
-}
-#recipe4 {
-    opacity: 0;
-}
-#recipe5 {
-    opacity: 0;
-}
 .recipe-images {
     float: right;
-    width: 30%;
+    width: 20%;
     margin-right: 5%;
     margin-bottom: 4%;
 }
@@ -178,4 +162,14 @@ input[type=text]:focus {
 }
 .click-title:hover {
     color: beige;
+}
+.hidden {
+    display: none;
+}
+#recipe-search {
+    margin-left: 70%;
+}
+#ingredient-input {
+    height: 36px;
+    font-size: 16px;
 }
