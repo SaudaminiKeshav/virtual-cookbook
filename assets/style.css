@@ -103,7 +103,6 @@ input[type=text]:focus {
 }
 
 .results {
-    opacity: 0;
     margin: 25px;
 }
 
@@ -112,7 +111,7 @@ input[type=text]:focus {
     background-color: orange;
     border: 5px solid yellow;
     padding: 20px;
-    height: 180px
+    height: 280px;
 }
 
 .details {
@@ -147,6 +146,51 @@ input[type=text]:focus {
 }
 /*---------------*/
 
+.click-title {
+    background: none;
+    border: none;
+}
+.recipe-images {
+    float: right;
+    width: 20%;
+    margin-right: 5%;
+    margin-bottom: 4%;
+}
+.ingredient-list {
+    float: left;
+    margin-left: 5%;
+}
+.instructions {
+    clear: both;
+    margin-left: 5%;
+    margin-right: 5%; 
+}
+.individual-recipes {
+    background-color: lightblue;
+    padding-bottom: 2%;
+    padding-top: .5%;
+}
+.recipe-titles {
+    text-align: center;
+}
+.save-recipe-button {
+    margin-left: 88%;
+}
+.click-title {
+    font-size: 24px;
+}
+.click-title:hover {
+    color: beige;
+}
+.hidden {
+    display: none;
+}
+#recipe-search {
+    margin-left: 70%;
+}
+#ingredient-input {
+    height: 36px;
+    font-size: 16px;
 #footer {
     background-color: coral;
     text-align: center;

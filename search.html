@@ -30,30 +30,88 @@
         <div class="col-lg-12">
           <nav id="search-bar">
             <form>
-              <input id="ingredient-input" type="text" name="search" placeholder="Search..">
+              <input id="ingredient-input" type="text" name="search" placeholder="Search...">
               <button id="ingredient-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Add +</button>
               <br>
-              <button id="recipe-search" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Search</button>
               <ul class="ingredient-list-search"></ul>
+              <button id="recipe-search" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Search</button>
+              <button id="clear-ingredients" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Clear</button>
             </form>
           </nav>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row hidden" id="card-for-recipe-list">
         <div clas="col-lg-12">
           <div class="results">
-            <div id="result0" class="result-card">
-              <h3 class="recipe-title0">Recipe Title</h3>
-              <p class="recipe-details0">Recipe description of recipe the description eventually to end with a... for viewing and linking</p>
-              <p class="time0 details">Time: 40 minutes</p>
-              <p class="difficulty0 details">Difficulty Rating: Beginner</p>
-              <p class="rating0 details">5 Stars</p>
-
+            <div id="result-titles" class="result-card">
+              <h3 id="recipe-title0">Recipes</h3>
+              <button class="click-title" id="title1" value="1"></button><br>
+              <button class="click-title" id="title2" value="2"></button><br>
+              <button class="click-title" id="title3" value="3"></button><br>
+              <button class="click-title" id="title4" value="4"></button><br>
+              <button class="click-title" id="title5" value="5"></button>
             </div>
           </div>
         </div>
       </div>
+
+
+      <!--INDIVIDUAL RECIPE CARDS-->
+      <!-- [1] -->
+            <div class="individual-recipes hidden" id="recipe1">
+              <h3 class="recipe-titles" id="recipe-1">Recipes</h3>
+              <ul class="ingredient-list" id="ingredients1"></ul>
+              <div>
+                <img class="recipe-images" id="recipe-image-1">
+              </div>
+              <ol class="instructions" id="recipe-contents-1"></ol><button class="save-recipe-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
+            </div>
+
+      <!-- [2] -->
+            <div class="individual-recipes hidden" id="recipe2">
+              <h3 class="recipe-titles" id="recipe-2">Recipes</h3>
+              <ul class="ingredient-list" id="ingredients2"></ul>
+              <div>
+                <img class="recipe-images" id="recipe-image-2">
+              </div>
+              <ol class="instructions" id="recipe-contents-2"></ol>
+              <button class="save-recipe-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
+            </div>
+
+      <!-- [3] -->
+            <div class="individual-recipes hidden" id="recipe3">
+              <h3 class="recipe-titles" id="recipe-3">Recipes</h3>
+              <ul class="ingredient-list" id="ingredients3"></ul>
+              <div>
+                <img class="recipe-images" id="recipe-image-3">
+              </div>
+              <ol class="instructions" id="recipe-contents-3"></ol>
+              <button class="save-recipe-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
+            </div>
+
+      <!-- [4] -->
+            <div class="individual-recipes hidden" id="recipe4">
+              <h3 class="recipe-titles" id="recipe-4">Recipes</h3>
+              <ul class="ingredient-list" id="ingredients4"></ul>
+              <div>
+                <img class="recipe-images" id="recipe-image-4">
+              </div>
+              <ol class="instructions" id="recipe-contents-4"></ol>
+              <button class="save-recipe-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
+            </div>
+
+      <!-- [5] -->
+            <div class="individual-recipes hidden" id="recipe5">
+              <h3 class="recipe-titles" id="recipe-5">Recipes</h3>
+              <ul class="ingredient-list" id="ingredients5"></ul>
+              <div>
+                <img class="recipe-images" id="recipe-image-5">
+              </div>
+              <ol class="instructions" id="recipe-contents-5"></ol>
+              <button class="save-recipe-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
+            </div>
+      <!--  -->
 
     </div>
 
@@ -63,8 +121,7 @@
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="assets/script.js"></script>
-    <!--<script src="assets/recipe_api.js"></script>-->
+    <script src="assets/script_copy.js"></script>
+    <!-- <script src="assets/recipe_api.js"></script> -->
 </body>
 </html>
