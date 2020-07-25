@@ -10,22 +10,88 @@ $(document).ready(function () {
         //run render saved recipes function
     }
 
-    // Add button id from dialog here
-    // let addRecipeBtn = $("#");
+    // Damini's dialog code
+    (function () {
+        'use strict';
+        var dialogButton = document.querySelector('.dialog-button');
+        var dialog = document.querySelector('#dialog');
+        if (!dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+        }
+        dialogButton.addEventListener('click', function dialogClick() {
+            dialog.showModal();
+        });
+        dialog.querySelector('button:not([disabled])')
+            .addEventListener('click', function () {
+                dialog.close();
+            });
+    }());
 
-    // $(addRecipeBtn).on("click", function () {
-    //     let recipeCard = $("#recipe-card");
+    // Add recipe code
+    // To do list:
+    // - add img upload option in dialog box
+    // - connect img upload to card
+    // - prepend new card
+    // - save inputs from dialog onto card
+    // - create card to hold/ show inputs
+    // - save cards in cookbook to local storage
+    $("#save-btn").on("click", function () {
+        event.preventDefault();
+        let recipeCard = $("#recipe-card");
+        let dialogTitleVal = $("#input-title").val().trim();
+        let dialogIngredientsVal = $("#input-ingredients").val().trim();
+        let dialogInstructionsVal = $("#input-instructions").val().trim();
+        //let dialogImgVal = ;
 
-    //     $(recipeCard).show();
-    //     // Need to take img and the recipe name to add it to the card
-    //     //      use .html or .text?
-    // });
+        if (dialogTitleVal === "") {
+            alert("Please enter a title to your recipe.");
+            dialogClick();
+        } else if (dialogIngredientsVal === "") {
+            alert("Please enter the ingredients to your recipe.");
+            dialogClick();
+        } else if (dialogInstructionsVal === "") {
+            alert("Please enter the instructions to your recipe.");
+            dialogClick();
+        } else {
+            $("#card-title").text(dialogTitleVal);
+            recipeCard.show();
+        }
+    });
 
-    // let openRecipeBtn = $("#open-recipe-btn");
 
-    // $(openRecipeBtn).on("click", function() {
-    //     // Use this function to show the whole recipe
-    // });
+    $("#add-image-input").on("change", function (event) {
+        event.preventDefault();
+        $(this).closest('.modal').one('hidden.bs.modal', function() {
+            // Fire if the button element 
+            console.log('The button that closed the modal is: ', $button);
+          });
+        getImage(this);
+    });
+
+    function getImage(input) {
+        var reader;
+
+        if (input.files && input.files[0]) {
+            event.preventDefault();
+            reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#preview").setAttribute('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+    $("#cancel-btn").on("click", function () {
+        // *if cancel btn is clicked, go back to home page
+    })
+
+    let openRecipeBtn = $("#open-recipe-btn");
+
+    openRecipeBtn.on("click", function() {
+        // *if open recipe btn is clicked, show the whole recipe for that given card
+    });
 
     function capitalizeFirstLetter(string) {
         let firstLetter = string.charAt(0).toUpperCase();

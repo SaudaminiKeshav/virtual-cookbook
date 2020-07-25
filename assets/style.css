@@ -66,8 +66,32 @@ body {
     font-size: 20px;
 }
 
+#add-image-input{
+    display: none;
+}
+
+.add-image-label{
+    display: block;
+    text-align: center;
+    float: left;
+    padding: 7px;
+    border-radius:10px;
+    margin-top: 5px;
+    font-weight: bolder;
+    font-variant-caps: all-small-caps;
+    font-size: medium;
+    background-color: #f38255;
+}
+
+.add-image-label:hover {
+    background-color: #a84219;
+    float: left;
+    color: white;
+    cursor: pointer;
+    }
+
 #save-btn {
-    background: rgb(47, 255, 168);
+    background: rgb(47, 255, 168); 
     position: absolute;
     bottom: 10px;
 }
@@ -142,7 +166,7 @@ input[type=text]:focus {
 
 .demo-card-square > .mdl-card__title {
     color: #fff;
-    background: url("./images/food.jpg") bottom right 15% no-repeat #46B6AC;
+    /*background: url("") bottom right 15% no-repeat #46B6AC;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -200,8 +224,8 @@ input[type=text]:focus {
 .ingredient-to-search {
     margin-left: 25%;
     list-style: square;
-
 }
+
 #footer {
     background-color: coral;
     text-align: center;
