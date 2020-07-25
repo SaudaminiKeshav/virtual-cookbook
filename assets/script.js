@@ -15,17 +15,17 @@ $(document).ready(function () {
         'use strict';
         var dialogButton = document.querySelector('.dialog-button');
         var dialog = document.querySelector('#dialog');
-        if (! dialog.showModal) {
-          dialogPolyfill.registerDialog(dialog);
+        if (!dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
         }
         dialogButton.addEventListener('click', function dialogClick() {
-           dialog.showModal();
+            dialog.showModal();
         });
         dialog.querySelector('button:not([disabled])')
-        .addEventListener('click', function() {
-          dialog.close();
-        });
-      }());
+            .addEventListener('click', function () {
+                dialog.close();
+            });
+    }());
 
     // Add recipe code
     // To do list:
@@ -35,7 +35,8 @@ $(document).ready(function () {
     // - save inputs from dialog onto card
     // - create card to hold/ show inputs
     // - save cards in cookbook to local storage
-    $("#save-btn").on("click", function() {
+    $("#save-btn").on("click", function () {
+        event.preventDefault();
         let recipeCard = $("#recipe-card");
         let dialogTitleVal = $("#input-title").val().trim();
         let dialogIngredientsVal = $("#input-ingredients").val().trim();
@@ -57,7 +58,32 @@ $(document).ready(function () {
         }
     });
 
-    $("#cancel-btn").on("click", function() {
+
+    $("#add-image-input").on("change", function (event) {
+        event.preventDefault();
+        $(this).closest('.modal').one('hidden.bs.modal', function() {
+            // Fire if the button element 
+            console.log('The button that closed the modal is: ', $button);
+          });
+        getImage(this);
+    });
+
+    function getImage(input) {
+        var reader;
+
+        if (input.files && input.files[0]) {
+            event.preventDefault();
+            reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#preview").setAttribute('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+    $("#cancel-btn").on("click", function () {
         // *if cancel btn is clicked, go back to home page
     })
 
