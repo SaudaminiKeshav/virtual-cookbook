@@ -66,8 +66,32 @@ body {
     font-size: 20px;
 }
 
+#add-image-input{
+    display: none;
+}
+
+.add-image-label{
+    display: block;
+    text-align: center;
+    float: left;
+    padding: 7px;
+    border-radius:10px;
+    margin-top: 5px;
+    font-weight: bolder;
+    font-variant-caps: all-small-caps;
+    font-size: medium;
+    background-color: #f38255;
+}
+
+.add-image-label:hover {
+    background-color: #a84219;
+    float: left;
+    color: white;
+    cursor: pointer;
+    }
+
 #save-btn {
-    background: rgb(47, 255, 168);
+    background: rgb(47, 255, 168); 
     position: absolute;
     bottom: 10px;
 }
