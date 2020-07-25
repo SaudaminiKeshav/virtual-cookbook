@@ -109,11 +109,15 @@ body {
 }
 
 #search-bar {
-    background-color: beige;
+    background-color: rgb(255, 176, 29);
     display: block;
     margin-left: 20%;
     margin-right: 20%;
     padding: 10px;    
+}
+
+#search-form {
+    padding: 20px;
 }
 
 input[type=text] {
@@ -179,6 +183,7 @@ input[type=text]:focus {
     width: 20%;
     margin-right: 5%;
     margin-bottom: 4%;
+    border: 5px solid whitesmoke;
 }
 .ingredient-list {
     float: left;
@@ -210,12 +215,17 @@ input[type=text]:focus {
     display: none;
 }
 #recipe-search {
-    margin-left: 70%;
+    margin-left: 35%;
 }
 #ingredient-input {
     height: 36px;
     font-size: 16px;
 }
+.ingredient-to-search {
+    margin-left: 25%;
+    list-style: square;
+}
+
 #footer {
     background-color: coral;
     text-align: center;

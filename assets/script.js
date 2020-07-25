@@ -93,6 +93,32 @@ $(document).ready(function () {
         // *if open recipe btn is clicked, show the whole recipe for that given card
     });
 
+    function capitalizeFirstLetter(string) {
+        let firstLetter = string.charAt(0).toUpperCase();
+        string = firstLetter + string.slice(1);
+
+        return string;
+    }
+
+    function checkDuplicate (array) {
+        for(let n = 0; n < array.length; n++) {
+            let index1 = array[n];
+
+            for(let p = 0; p < array.length; p++) {
+                if(n === p) {
+                    //Do nothing
+                } else {
+                    let index2 = array[p];
+                    
+                    if(index1 === index2) {
+                        array.splice(p, 1);
+                    }
+                }
+            }
+        }
+        return array;
+    }
+
     let ingredientArray = [];
 
     $("#ingredient-add").on("click", function () {
@@ -101,8 +127,9 @@ $(document).ready(function () {
         if ($("#ingredient-input").val().trim() === "") {
             return;
         } else {
-            let ingredient = $("#ingredient-input").val();
+            let ingredient = capitalizeFirstLetter($("#ingredient-input").val());
             let li = $("<li>");
+            li.addClass("ingredient-to-search");
             li.text(ingredient);
             ingredientArray.push(ingredient);
             $(".ingredient-list-search").append(li);
@@ -153,8 +180,8 @@ $(document).ready(function () {
     });
 
     function retrieveRecipe() {
-        //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
-        var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
+        var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
+        //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
         var ingredients = ingredientArray.join();
         var numberOfRecipes = 5;
         var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -165,9 +192,11 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             for (var r = 0; r < 5; r++) {
-                $(`#title${r + 1}`).text(`-${response[r].title}`);
-                $(`#recipe-${r + 1}`).text(response[r].title);
+                let title = capitalizeFirstLetter(response[r].title);
+                $(`#title${r + 1}`).text(`-${title}`);
+                $(`#recipe-${r + 1}`).text(title);
                 $(`#recipe-image-${r + 1}`).attr("src", response[r].image);
+                console.log(response);
 
                 var ingredientsNeeded = response[r].missedIngredients.length;
 
@@ -185,21 +214,38 @@ $(document).ready(function () {
                     method: "GET"
                 }).then(function (response) {
                     if (response.length === 0) {
-                        console.log("No instructions found.");
+                        //console.log("No instructions found.");
                     } else {
-                        var numberOfSteps = response[0].steps.length;
+                        for(let k = 0; k < response.length; k++) {
+                        var numberOfSteps = response[k].steps.length;
                         for (var i = 0; i < numberOfSteps; i++) {
                             var li = $("<li></li>");
-                            li.text(response[0].steps[i].step);
+                            li.text(response[k].steps[i].step);
                             $(`#recipe-contents-${i + 1}`).append(li);
 
-                            var numberOfIngredients = response[0].steps[i].ingredients.length;
+                            var numberOfIngredients = response[k].steps[i].ingredients.length;
 
                             for (var j = 0; j < numberOfIngredients; j++) {
-                                console.log(response[0].steps[i].ingredients[j].name);
-                                //$(".recipe-details0").text(response[0].steps[i].ingredients[j].name);
+                                //console.log(response);
+                                if(response[k].steps[i].ingredients[j].name === null) {
+                                    return;
+                                } else {
+                                    //console.log(response[k].steps[i].ingredients[j].name);
+
+                                    let foundIngredients = [];
+                                    foundIngredients.push(response[k].steps[i].ingredients[j].name);
+
+                                    checkDuplicate(foundIngredients);
+
+                                    for(let m = 0; m < foundIngredients.length; m++) {
+                                        let ingLi = $("<li></li>");
+                                        ingLi.text(foundIngredients[m]);
+                                        $(`#ingredients${i + 1}`).append(ingLi);
+                                    }
+                                }
                             }
                         }
+                    }
 
                     }
                 });
