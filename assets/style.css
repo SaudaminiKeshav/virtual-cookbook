@@ -60,7 +60,7 @@ body {
     font-size: 17px;
 }
 
-.recipe-inputs {
+.recipe-inputs:required{
     width: 90%;
     padding: 12px;
     font-size: 20px;
@@ -178,6 +178,7 @@ input[type=text]:focus {
     background: none;
     border: none;
 }
+
 .recipe-images {
     float: right;
     width: 20%;
@@ -200,6 +201,7 @@ input[type=text]:focus {
     padding-top: .5%;
 }
 .recipe-titles {
+
     text-align: center;
 }
 .save-recipe-button {
