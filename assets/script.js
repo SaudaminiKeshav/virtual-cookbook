@@ -36,35 +36,71 @@ $(document).ready(function () {
     // - create card to hold/ show inputs
     // - save cards in cookbook to local storage
     $("#save-btn").on("click", function () {
-        event.preventDefault();
+        
         let recipeCard = $("#recipe-card");
         let dialogTitleVal = $("#input-title").val().trim();
         let dialogIngredientsVal = $("#input-ingredients").val().trim();
         let dialogInstructionsVal = $("#input-instructions").val().trim();
-        //let dialogImgVal = ;
 
-        if (dialogTitleVal === "") {
-            alert("Please enter a title to your recipe.");
-            dialogClick();
-        } else if (dialogIngredientsVal === "") {
-            alert("Please enter the ingredients to your recipe.");
-            dialogClick();
-        } else if (dialogInstructionsVal === "") {
-            alert("Please enter the instructions to your recipe.");
-            dialogClick();
-        } else {
-            $("#card-title").text(dialogTitleVal);
-            recipeCard.show();
-        }
+
+        displayRecipeOnCard(dialogTitleVal, dialogIngredientsVal, dialogInstructionsVal);
+       
     });
 
 
+    function displayRecipeOnCard(title, ingredients, instruction) {
+
+        if(title != "" && ingredients != "" && instruction != ""){
+        
+            event.preventDefault();
+
+            var dialog = document.querySelector('#dialog');
+            dialog.close();
+
+            var cardDiv = $("<div>");
+            cardDiv.attr("id", "recipe-card");
+            cardDiv.attr("class", "demo-card-square mdl-card mdl-shadow--2dp");
+    
+            var imgDiv = $("<div>");
+            imgDiv.attr("class", "mdl-card__title mdl-card--expand");
+    
+            cardDiv.append(imgDiv);
+    
+            var titleDiv = $("<div>");
+            titleDiv.attr("id", "recipe-title");
+            titleDiv.attr("class", "mdl-card__supporting-text");
+    
+            var titleH2 = $("<h2>");
+            titleH2.attr("id", "card-title");
+            titleH2.attr("class", "mdl-card__title-text");
+            titleH2.text(title);
+    
+            titleDiv.append(titleH2);
+            cardDiv.append(titleDiv);
+    
+            var buttonDiv = $("<div>");
+            buttonDiv.attr("class", "mdl-card__actions mdl-card--border");
+           
+            var buttonATag = $("<a>");
+            buttonATag.attr("id", "open-recipe-btn");
+            buttonATag.attr("class", "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect");
+            buttonATag.text("Open Recipe");
+    
+            buttonDiv.append(buttonATag);
+            cardDiv.append(buttonDiv);
+    
+            $(".container-index").prepend(cardDiv);
+        }
+
+      
+    }
+
     $("#add-image-input").on("change", function (event) {
         event.preventDefault();
-        $(this).closest('.modal').one('hidden.bs.modal', function() {
+        $(this).closest('.modal').one('hidden.bs.modal', function () {
             // Fire if the button element 
             console.log('The button that closed the modal is: ', $button);
-          });
+        });
         getImage(this);
     });
 
@@ -89,7 +125,7 @@ $(document).ready(function () {
 
     let openRecipeBtn = $("#open-recipe-btn");
 
-    openRecipeBtn.on("click", function() {
+    openRecipeBtn.on("click", function () {
         // *if open recipe btn is clicked, show the whole recipe for that given card
     });
 
@@ -100,17 +136,17 @@ $(document).ready(function () {
         return string;
     }
 
-    function checkDuplicate (array) {
-        for(let n = 0; n < array.length; n++) {
+    function checkDuplicate(array) {
+        for (let n = 0; n < array.length; n++) {
             let index1 = array[n];
 
-            for(let p = 0; p < array.length; p++) {
-                if(n === p) {
+            for (let p = 0; p < array.length; p++) {
+                if (n === p) {
                     //Do nothing
                 } else {
                     let index2 = array[p];
-                    
-                    if(index1 === index2) {
+
+                    if (index1 === index2) {
                         array.splice(p, 1);
                     }
                 }
@@ -216,36 +252,36 @@ $(document).ready(function () {
                     if (response.length === 0) {
                         //console.log("No instructions found.");
                     } else {
-                        for(let k = 0; k < response.length; k++) {
-                        var numberOfSteps = response[k].steps.length;
-                        for (var i = 0; i < numberOfSteps; i++) {
-                            var li = $("<li></li>");
-                            li.text(response[k].steps[i].step);
-                            $(`#recipe-contents-${i + 1}`).append(li);
+                        for (let k = 0; k < response.length; k++) {
+                            var numberOfSteps = response[k].steps.length;
+                            for (var i = 0; i < numberOfSteps; i++) {
+                                var li = $("<li></li>");
+                                li.text(response[k].steps[i].step);
+                                $(`#recipe-contents-${i + 1}`).append(li);
 
-                            var numberOfIngredients = response[k].steps[i].ingredients.length;
+                                var numberOfIngredients = response[k].steps[i].ingredients.length;
 
-                            for (var j = 0; j < numberOfIngredients; j++) {
-                                //console.log(response);
-                                if(response[k].steps[i].ingredients[j].name === null) {
-                                    return;
-                                } else {
-                                    //console.log(response[k].steps[i].ingredients[j].name);
+                                for (var j = 0; j < numberOfIngredients; j++) {
+                                    //console.log(response);
+                                    if (response[k].steps[i].ingredients[j].name === null) {
+                                        return;
+                                    } else {
+                                        //console.log(response[k].steps[i].ingredients[j].name);
 
-                                    let foundIngredients = [];
-                                    foundIngredients.push(response[k].steps[i].ingredients[j].name);
+                                        let foundIngredients = [];
+                                        foundIngredients.push(response[k].steps[i].ingredients[j].name);
 
-                                    checkDuplicate(foundIngredients);
+                                        checkDuplicate(foundIngredients);
 
-                                    for(let m = 0; m < foundIngredients.length; m++) {
-                                        let ingLi = $("<li></li>");
-                                        ingLi.text(foundIngredients[m]);
-                                        $(`#ingredients${i + 1}`).append(ingLi);
+                                        for (let m = 0; m < foundIngredients.length; m++) {
+                                            let ingLi = $("<li></li>");
+                                            ingLi.text(foundIngredients[m]);
+                                            $(`#ingredients${i + 1}`).append(ingLi);
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
 
                     }
                 });

@@ -52,11 +52,11 @@
                 <form>
                     <br>
                     <label class="input-labels">Recipe Name *</label><br>
-                    <input id="input-title" class="recipe-inputs"><br><br>
+                    <input id="input-title"  type="text"  class="recipe-inputs" required><br><br>
                     <label class="input-labels">Ingredients *</label><br>
-                    <input id="input-ingredients" class="recipe-inputs"><br><br>
+                    <input id="input-ingredients"  type="text"  class="recipe-inputs" required><br><br>
                     <label class="input-labels">Instructions *</label><br>
-                    <textarea id="input-instructions" class="recipe-inputs" rows="5" cols="50"></textarea><br><br>
+                    <textarea id="input-instructions"  type="text"  class="recipe-inputs" rows="5" cols="50" required></textarea><br><br>
                     <label class="input-labels">Upload Image (Optional)</label><br>
                     <!--Upload image here-->
 
@@ -66,14 +66,16 @@
                         <input id="add-image-input" type="file" class="add-image">
                         <span>Add Image</span>
                     </label>
-                    <!-- </button> -->
-                    <!-- <img src="" id="preview"> -->
+                    </button>
+                    <img src="" id="preview">
+                    <div id="dialog-btn-div" class="mdl-dialog__actions">
+                        <input type="submit" class="mdl-button" id="save-btn"/>
+                      
+                        <button id="cancel-btn" type="button" class="mdl-button">Cancel</button>
+                    </div>
                 </form>
-            </div>
-            <div id="dialog-btn-div" class="mdl-dialog__actions">
-                <button id="save-btn" type="button" class="mdl-button">+ Save</button>
-                <button id="cancel-btn" type="button" class="mdl-button">Cancel</button>
-            </div>
+                </div>
+          
         </dialog>
 
     </div>
