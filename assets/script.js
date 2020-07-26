@@ -249,8 +249,9 @@ function addSaveButtonClickListener() {
 }
 
 function saveUserInputToLocalStorage(title, ingredients, instructions) {
+    // Create an array to save a copy of local storage array 
     var Recipes = [];
-    event.preventDefault();
+
     // Check if the "Recipe" array already exists in the Local storage 
     if (localStorage.getItem('Recipes') === null) {
 
@@ -260,7 +261,6 @@ function saveUserInputToLocalStorage(title, ingredients, instructions) {
             ingredients: ingredients,
             instructions: instructions
         })
-
         // Create a new Recipes array using our local copr - recipesCopy
         localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
 
@@ -280,9 +280,31 @@ function saveUserInputToLocalStorage(title, ingredients, instructions) {
 
             // Update "Recipe" in local storage 
             localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
-        }
-    }
 
+        }
+
+        // If the array existing and is not empty, push an object onto the array 
+        else if ((Recipes.length != 0 && recipesCopy.length != 0))
+
+            // Check the recipe with the same titlte already exists 
+            for (var i = 0; i < recipesCopy.length; i++) {
+                if (recipesCopy[i].key == title) {
+
+                    // Delete the old recipe with the same title
+                    recipesCopy.splice(i, 1);
+                }
+            }
+
+        // Add the newly created recipe with that title
+        recipesCopy.push({
+            key: title,
+            ingredients: ingredients,
+            instructions: instructions
+        })
+
+        // Update "Recipe" in local storage 
+        localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
+    }
 }
 
 function createAndDisplayRecipeOnCard(title, ingredients, instruction) {
