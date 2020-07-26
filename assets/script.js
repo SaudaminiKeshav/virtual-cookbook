@@ -10,124 +10,28 @@ $(document).ready(function () {
         //run render saved recipes function
     }
 
-    // Damini's dialog code
-    (function () {
-        'use strict';
-        var dialogButton = document.querySelector('.dialog-button');
-        var dialog = document.querySelector('#dialog');
-        if (!dialog.showModal) {
-            dialogPolyfill.registerDialog(dialog);
-        }
-        dialogButton.addEventListener('click', function dialogClick() {
-            dialog.showModal();
-        });
-        dialog.querySelector('button:not([disabled])')
-            .addEventListener('click', function () {
-                dialog.close();
-            });
-    }());
-
     // Add recipe code
     // To do list:
-    // - add img upload option in dialog box
+    // - add img upload option in dialog box        //DONE
     // - connect img upload to card
-    // - prepend new card
+    // - prepend new card                           //DONE
     // - save inputs from dialog onto card
     // - create card to hold/ show inputs
     // - save cards in cookbook to local storage
-    $("#save-btn").on("click", function () {
-        
-        let recipeCard = $("#recipe-card");
-        let dialogTitleVal = $("#input-title").val().trim();
-        let dialogIngredientsVal = $("#input-ingredients").val().trim();
-        let dialogInstructionsVal = $("#input-instructions").val().trim();
 
 
-        displayRecipeOnCard(dialogTitleVal, dialogIngredientsVal, dialogInstructionsVal);
-       
-    });
+    // Creates the recipe dialog and also the click event listener for "ADD RECIPE" Button
+    createRecipeDialog();
 
+    // Gets the user input on clicking "SAVE", create "RECIPE CARDS", and saves the data to local storage 
+    addSaveButtonClickListener();
 
-    function displayRecipeOnCard(title, ingredients, instruction) {
+    // Contains code logic to get an image from system/device 
+    dialogAddImageButtonClickListener();
 
-        if(title != "" && ingredients != "" && instruction != ""){
-        
-            event.preventDefault();
+    // Displays saved recipe 
+    OpenRecipeButtonClickListener();
 
-            var dialog = document.querySelector('#dialog');
-            dialog.close();
-
-            var cardDiv = $("<div>");
-            cardDiv.attr("id", "recipe-card");
-            cardDiv.attr("class", "demo-card-square mdl-card mdl-shadow--2dp");
-    
-            var imgDiv = $("<div>");
-            imgDiv.attr("class", "mdl-card__title mdl-card--expand");
-    
-            cardDiv.append(imgDiv);
-    
-            var titleDiv = $("<div>");
-            titleDiv.attr("id", "recipe-title");
-            titleDiv.attr("class", "mdl-card__supporting-text");
-    
-            var titleH2 = $("<h2>");
-            titleH2.attr("id", "card-title");
-            titleH2.attr("class", "mdl-card__title-text");
-            titleH2.text(title);
-    
-            titleDiv.append(titleH2);
-            cardDiv.append(titleDiv);
-    
-            var buttonDiv = $("<div>");
-            buttonDiv.attr("class", "mdl-card__actions mdl-card--border");
-           
-            var buttonATag = $("<a>");
-            buttonATag.attr("id", "open-recipe-btn");
-            buttonATag.attr("class", "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect");
-            buttonATag.text("Open Recipe");
-    
-            buttonDiv.append(buttonATag);
-            cardDiv.append(buttonDiv);
-    
-            $(".container-index").prepend(cardDiv);
-        }
-
-      
-    }
-
-    $("#add-image-input").on("change", function (event) {
-        event.preventDefault();
-        $(this).closest('.modal').one('hidden.bs.modal', function () {
-            // Fire if the button element 
-            console.log('The button that closed the modal is: ', $button);
-        });
-        getImage(this);
-    });
-
-    function getImage(input) {
-        var reader;
-
-        if (input.files && input.files[0]) {
-            event.preventDefault();
-            reader = new FileReader();
-
-            reader.onload = function (e) {
-                $("#preview").setAttribute('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-
-    $("#cancel-btn").on("click", function () {
-        // *if cancel btn is clicked, go back to home page
-    })
-
-    let openRecipeBtn = $("#open-recipe-btn");
-
-    openRecipeBtn.on("click", function () {
-        // *if open recipe btn is clicked, show the whole recipe for that given card
-    });
 
     function capitalizeFirstLetter(string) {
         let firstLetter = string.charAt(0).toUpperCase();
@@ -289,3 +193,141 @@ $(document).ready(function () {
         });
     }
 });
+
+
+function createRecipeDialog() {
+
+    // Create and display Recipe Dialog
+    (function () {
+        'use strict';
+
+        //Get the addRecipeButton
+        var addRecipeButton = document.querySelector('.dialog-button');
+
+        // Get the modal dialog create in the HTML 
+        var dialog = document.querySelector('#dialog');
+
+        // Register dialog 
+        if (!dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+        }
+
+        // Click event listener for addRecipe button 
+        addRecipeButton.addEventListener('click', function dialogClick() {
+            // On click display dialog 
+            dialog.showModal();
+        });
+
+        // Add event  listener to Cancel button
+        dialog.querySelector('button:not([disabled])')
+            .addEventListener('click', function () {
+                dialog.close();
+            });
+    }());
+}
+
+function addSaveButtonClickListener() {
+
+    // Add click listener 
+    $("#save-btn").on("click", function () {
+
+        // Get values from input fields 
+        let dialogTitleVal = $("#input-title").val().trim();
+        let dialogIngredientsVal = $("#input-ingredients").val().trim();
+        let dialogInstructionsVal = $("#input-instructions").val().trim();
+
+        // create and display recipe card using the user input 
+        createAndDisplayRecipeOnCard(dialogTitleVal, dialogIngredientsVal, dialogInstructionsVal);
+    });
+}
+
+
+function displayRecipeOnCard(title, ingredients, instruction) {
+
+    // Check if neither of the fields are empty 
+    if (title != "" && ingredients != "" && instruction != "") {
+        event.preventDefault();
+
+        // Dismiss the dialog
+        var dialog = document.querySelector('#dialog');
+        dialog.close();
+
+        // Start building the card div 
+        var cardDiv = $("<div>");
+        cardDiv.attr("id", "recipe-card");
+        cardDiv.attr("class", "demo-card-square mdl-card mdl-shadow--2dp");
+
+        // Recipe image div 
+        var imgDiv = $("<div>");
+        imgDiv.attr("class", "mdl-card__title mdl-card--expand");
+
+        cardDiv.append(imgDiv);
+
+        // Recipe title div 
+        var titleDiv = $("<div>");
+        titleDiv.attr("id", "recipe-title");
+        titleDiv.attr("class", "mdl-card__supporting-text");
+
+        var titleH2 = $("<h2>");
+        titleH2.attr("id", "card-title");
+        titleH2.attr("class", "mdl-card__title-text");
+        titleH2.text(title);
+
+        titleDiv.append(titleH2);
+        cardDiv.append(titleDiv);
+
+        // Open Recipe button div 
+        var buttonDiv = $("<div>");
+        buttonDiv.attr("class", "mdl-card__actions mdl-card--border");
+
+        var buttonATag = $("<a>");
+        buttonATag.attr("id", "open-recipe-btn");
+        buttonATag.attr("class", "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect");
+        buttonATag.text("Open Recipe");
+
+        buttonDiv.append(buttonATag);
+        cardDiv.append(buttonDiv);
+
+        $(".container-index").prepend(cardDiv);
+    }
+}
+
+function dialogAddImageButtonClickListener() {
+
+    // Add click change event listener 
+    $("#add-image-input").on("change", function (event) {
+        event.preventDefault();
+        $(this).closest('.modal').one('hidden.bs.modal', function () {
+            // Fire if the button element 
+            console.log('The button that closed the modal is: ', $button);
+        });
+
+        // Get image from system 
+        getImage(this);
+    });
+}
+
+function getImage(input) {
+    var reader;
+
+    if (input.files && input.files[0]) {
+        event.preventDefault();
+
+        // Create file reader 
+        reader = new FileReader();
+
+        // event listener for file reader 
+        reader.onload = function (e) {
+            $("#preview").setAttribute('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function OpenRecipeButtonClickListener() {
+    let openRecipeBtn = $("#open-recipe-btn");
+
+    openRecipeBtn.on("click", function () {
+        // *if open recipe btn is clicked, show the whole recipe for that given card
+    });
+}
