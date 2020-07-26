@@ -1,3 +1,6 @@
+
+let recipesCopy = [];
+
 $(document).ready(function () {
 
     let cookbook;
@@ -16,6 +19,7 @@ $(document).ready(function () {
     // - connect img upload to card
     // - prepend new card                           //DONE
     // - save inputs from dialog onto card
+    // - save inputs from dialog onto Local storage
     // - create card to hold/ show inputs
     // - save cards in cookbook to local storage
 
@@ -236,13 +240,52 @@ function addSaveButtonClickListener() {
         let dialogIngredientsVal = $("#input-ingredients").val().trim();
         let dialogInstructionsVal = $("#input-instructions").val().trim();
 
+        // Save a copy of the user input into Local storage 
+        saveUserInputToLocalStorage(dialogTitleVal, dialogIngredientsVal, dialogInstructionsVal);
+
         // create and display recipe card using the user input 
         createAndDisplayRecipeOnCard(dialogTitleVal, dialogIngredientsVal, dialogInstructionsVal);
     });
 }
 
+function saveUserInputToLocalStorage(title, ingredients, instructions) {
+    var Recipes = [];
+    event.preventDefault();
+    // Check if the "Recipe" array already exists in the Local storage 
+    if (localStorage.getItem('Recipes') === null) {
 
-function displayRecipeOnCard(title, ingredients, instruction) {
+        // Push the new recipe on our local copy 
+        recipesCopy.push({
+            key: title,
+            ingredients: ingredients,
+            instructions: instructions
+        })
+
+        // Create a new Recipes array using our local copr - recipesCopy
+        localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
+
+    } else {
+        // Else fetch the existing array from local storage 
+        Recipes = JSON.parse(localStorage.getItem('Recipes'));
+
+        // Check if Recipe array on local storage is empty 
+        if ((Recipes.length == 0 && recipesCopy.length == 0)) {
+
+            // Push the new recipe on our local copy 
+            recipesCopy.push({
+                key: title,
+                ingredients: ingredients,
+                instructions: instructions
+            })
+
+            // Update "Recipe" in local storage 
+            localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
+        }
+    }
+
+}
+
+function createAndDisplayRecipeOnCard(title, ingredients, instruction) {
 
     // Check if neither of the fields are empty 
     if (title != "" && ingredients != "" && instruction != "") {
