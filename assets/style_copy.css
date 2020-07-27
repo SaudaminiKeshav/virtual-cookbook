@@ -1,0 +1,297 @@
+* {
+    font-family: 'Zilla Slab', serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.font {
+    font-family: 'Zilla Slab', serif;
+}
+
+.navbar {
+    background-color: rgb(36, 207, 50);
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    padding-bottom: 25px;
+    background-image: url(./images/background2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.nav-link {
+    color: cornsilk;
+}
+
+.home {
+    background-color: rgb(40, 40, 41);
+    color: rgb(246, 250, 224);
+    text-align: center;
+    padding: 3px;
+    margin-right: 10px;
+    border-radius: 20px;
+    width: 60px;
+    float: left;
+    list-style: none;
+}
+
+.searchBtn {
+    background-color: rgb(40, 40, 41);
+    color: rgb(246, 250, 224);
+    text-align: center;
+    padding: 3px;
+    border-radius: 20px;
+    width: 60px;
+    float: left;
+    list-style: none;
+}
+
+#header {
+    background-color: rgb(199, 199, 199);
+    text-align: center;
+    font-weight: bold;
+    padding: 45px;
+    width: 95%;
+}
+
+.add-recipe {
+    float: right;
+}
+
+#dialog {
+    width: 40%;
+    height: 600px;
+}
+
+#dialog-title {
+    background: rgb(47, 255, 168);
+    height: 55px;
+}
+
+.input-labels {
+    font-size: 17px;
+}
+
+.recipe-inputs:required{
+    width: 90%;
+    padding: 12px;
+    font-size: 20px;
+}
+
+#add-image-input{
+    display: none;
+}
+
+.add-image-label{
+    display: block;
+    text-align: center;
+    float: left;
+    padding: 7px;
+    border-radius:10px;
+    margin-top: 5px;
+    font-weight: bolder;
+    font-variant-caps: all-small-caps;
+    font-size: medium;
+    background-color: #f38255;
+}
+
+.add-image-label:hover {
+    background-color: #a84219;
+    float: left;
+    color: white;
+    cursor: pointer;
+    }
+
+#save-btn {
+    background: rgb(47, 255, 168); 
+    position: absolute;
+    bottom: 10px;
+}
+
+#cancel-btn {
+    background: rgb(47, 255, 168);
+    position: absolute;
+    bottom: 10px;
+    left: 3.5%;
+}
+
+/* search.html */
+.container-search {
+    padding: 45px;
+}
+
+#search-bar {
+    background-color: rgb(199, 199, 199);
+    display: block;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 10px;    
+}
+
+#search-form {
+    padding: 20px;
+}
+
+#ingredient-add {
+    background-color: rgb(231, 143, 28);
+}
+
+.ingredient-list-search {
+    padding: 20px;
+}
+
+li {
+    padding-top: 15px;
+}
+
+.ingredient-to-search {
+    margin-left: 42%;
+    font-size: 22px; 
+}
+
+#recipe-search {
+    background-color: rgb(231, 143, 28);
+}
+
+#clear-ingredients {
+    background-color: rgb(231, 143, 28);
+}
+
+input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+  
+input[type=text]:focus {
+    width: 20%;
+}
+
+.results {
+    margin: 25px;
+}
+
+.result-card {
+    margin: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: tan;
+    border: 5px solid rgb(58, 58, 58);
+    text-align: center;
+    padding: 15px;
+    height: 280px;
+}
+
+.details {
+    float: left;
+    margin-right: 30px;
+}
+/*---------------*/
+
+/* Square recipe cards */
+#recipe-card {
+    float: left;
+    margin: 20px;
+}
+
+#recipe-title {
+    color: rgb(240, 240, 240);
+    background-color: rgb(26, 185, 66);
+}
+
+.demo-card-square.mdl-card {
+    width: 300px;
+    height: 300px;
+}
+
+.demo-card-square > .mdl-card__title {
+    color: #fff;
+    /*background: url("") bottom right 15% no-repeat #46B6AC;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/*---------------*/
+
+.click-title {
+    padding-bottom: 10px;
+    background: none;
+    border: none;
+}
+
+.recipe-images {
+    float: right;
+    width: 30%;
+    margin-top: 2%;
+    margin-right: 5%;
+    margin-bottom: 4%;
+    border: 4px solid rgb(8, 18, 111);
+}
+.ingredient-list {
+    float: left;
+    margin-left: 5%;
+}
+
+#ingredients1 {
+    font-size: 18px;
+}
+
+.instructions {
+    clear: both;
+    margin-left: 5%;
+    margin-right: 5%; 
+    font-size: 18px;
+}
+.individual-recipes {
+    background-color: lightblue;
+    padding-bottom: 2%;
+    padding-top: .5%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.recipe-titles {
+    font-family: 'Zilla Slab', serif;
+    text-align: center;
+    font-size: 36px;
+}
+#recipe-title0 {
+    font-family: 'Zilla Slab', serif;
+    font-size: 36px;
+}
+#save-recipe-button {
+    margin-left: 88%;
+    background-color: rgb(231, 143, 28);
+    font-family: 'Zilla Slab', serif;
+}
+.click-title {
+    font-size: 24px;
+}
+.click-title:hover {
+    color: beige;
+}
+.hidden {
+    display: none;
+}
+#recipe-search {
+    margin-left: 35%;
+}
+#ingredient-input {
+    height: 36px;
+    font-size: 16px;
+}
+
+#footer {
+    text-align: center;
+    clear: both;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+    background-image: url(./images/background2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

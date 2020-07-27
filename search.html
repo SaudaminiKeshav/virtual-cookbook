@@ -6,8 +6,9 @@
     <title>Virtual Cookbook</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style_copy.css">
     <link rel="icon" href="assets/images/recipe.png"/>
 </head>
 <body>
@@ -22,7 +23,7 @@
           </ul>
     </div>
     <div id="header">
-        <h1 id="title">Search</h1>
+        <h1 class="font">Search Recipes</h1>
     </div>
 
     <div class="container-search">
@@ -31,11 +32,11 @@
           <nav id="search-bar">
             <form id="search-form">
               <input id="ingredient-input" type="text" name="search" placeholder="Search...">
-              <button id="ingredient-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Add +</button>
+              <button id="ingredient-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent font" type="submit">Add +</button>
               <br>
               <ul class="ingredient-list-search"></ul>
-              <button id="recipe-search" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Search</button>
-              <button id="clear-ingredients" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">Clear</button>
+              <button id="recipe-search" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent font" type="submit">Search</button>
+              <button id="clear-ingredients" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent font" type="submit">Clear</button>
             </form>
           </nav>
         </div>
@@ -65,7 +66,7 @@
               <div>
                 <img class="recipe-images" id="recipe-image-1">
               </div>
-              <ol class="instructions" id="recipe-contents-1"></ol><button class="save-recipe-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
+              <ol class="instructions" id="recipe-contents-1"></ol><button id="save-recipe-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Save</button>
             </div>
             
     </div>
@@ -76,6 +77,6 @@
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/script_copy.js"></script>
+    <script src="assets/script_copy2.js"></script>
 </body>
 </html>
