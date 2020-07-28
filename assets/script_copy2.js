@@ -44,12 +44,14 @@ $(document).ready(function () {
                 for (var r = 0; r < 5; r++) {
                     let title = capitalizeFirstLetter(response[r].title);
                     $(`#title${r + 1}`).text(`- ${title}`);
+                    localStorage.setItem(`recipe${r + 1}`, JSON.stringify(response[r].title));
                 }
             });
             $("#card-for-recipe-list").removeClass("hidden");
         }
     });
 
+    recipesTitles = [];
     //Within both AJAX functions 
     $("#save-recipe-button").on("click", function() {
         let searchedTitle = $("#recipe-1").text();
@@ -57,11 +59,20 @@ $(document).ready(function () {
         let listOfIngredients = $(".ingredient-list").text();
         let stepInstructions = $(".instructions").text();
 
+        recipesTitles.push(searchedTitle);
+        localStorage.setItem(`recipe1`, JSON.stringify(recipesTitles));
+
+        var ingredients = [];
+        $("#ingredients1").each(function(){
+            ingredients.push(this.innerHTML);
+         })
+        localStorage.setItem(`${searchedTitle}-ingredients`, JSON.stringify(ingredients));
+
         //Save a copy of the recipe into Local storage 
-        saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions);
+        //saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions);
     
         //Create recipe card
-        createAndDisplayRecipeOnCard(searchedTitle, listOfIngredients, stepInstructions); 
+        //createAndDisplayRecipeOnCard(searchedTitle, listOfIngredients, stepInstructions); 
         });
 
 
@@ -85,11 +96,14 @@ $(document).ready(function () {
             }).then(function (response) {
             
                 let title = capitalizeFirstLetter(response[0].title);
+                //save this to local storage
             
                 $(`#recipe-1`).text(title);
                 $(`#recipe-image-1`).attr("src", response[0].image);
                 var ingredientsNeeded = response[0].missedIngredients.length;
                 let foundIngredients = [];
+                //save this to local storage
+
                 $("#ingredients1").empty();
                 for (let k = 0; k < ingredientsNeeded; k++) {
                     foundIngredients.push(response[0].missedIngredients[k].name);
@@ -124,6 +138,7 @@ $(document).ready(function () {
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
                                 li.text(response[k].steps[i].step);
+                                //save this to local storage step[i] or array[i]
                                 $(`#recipe-contents-1`).append(li);
 
                                 var numberOfIngredients = response[k].steps[i].ingredients.length;
@@ -137,7 +152,7 @@ $(document).ready(function () {
                                             //console.log("not pushed");
                                         } else {
                                             foundIngredients.push(response[k].steps[i].ingredients[j].name);
-                                            //console.log("after push", foundIngredients);
+                                            //save this to local storage
                                             let ingLi = $("<li></li>");
                                             ingLi.text(response[k].steps[i].ingredients[j].name);
                                             ingLi.text(capitalizeFirstLetter(ingLi.text()));
