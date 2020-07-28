@@ -44,30 +44,10 @@ $(document).ready(function () {
         return string;
     }
 
-    function checkDuplicate(array) {
-        for (let n = 0; n < array.length; n++) {
-            let index1 = array[n];
-
-            for (let p = 0; p < array.length; p++) {
-                if (n === p) {
-                    //Do nothing
-                } else {
-                    let index2 = array[p];
-
-                    if (index1 === index2) {
-                        array.splice(p, 1);
-                    }
-                }
-            }
-        }
-        return array;
-    }
-
     let ingredientArray = [];
-
+   
     $("#ingredient-add").on("click", function () {
         event.preventDefault();
-
         if ($("#ingredient-input").val().trim() === "") {
             return;
         } else {
@@ -78,124 +58,523 @@ $(document).ready(function () {
             ingredientArray.push(ingredient);
             $(".ingredient-list-search").append(li);
         }
-
         $("#ingredient-input").val("");
     });
 
     $("#recipe-search").on("click", function () {
-        event.preventDefault();
-        retrieveRecipe();
-        $("#card-for-recipe-list").removeClass("hidden");
+        if (ingredientArray.length === 0) {
+            return;
+        } else {
+            event.preventDefault();
+            
+            //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
+            //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
+            //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+
+            var ingredients = ingredientArray.join();
+            var numberOfRecipes = 5;
+            var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
+            $.ajax({
+                url: recipeURL,
+                method: "GET"
+            }).then(function (response) {
+                for (var r = 0; r < 5; r++) {
+                    let title = capitalizeFirstLetter(response[r].title);
+                    $(`#title${r + 1}`).text(`- ${title}`);
+                }
+            });
+            $("#card-for-recipe-list").removeClass("hidden");
+        }
     });
+
+    function createRecipeCardfromSearch(foundTitle, imageSource) {
+        //foundImage input takes in a string for src attribute
+    
+        console.log("createRecipeCardFromSearch ran");
+    
+         var cardDiv = $("<div>");
+         cardDiv.attr("id", "recipe-card");
+         cardDiv.attr("class", "demo-card-square mdl-card mdl-shadow--2dp");
+    
+         // Recipe image div 
+         var imgDiv = $("<div>");
+         imgDiv.attr("class", "mdl-card__title mdl-card--expand");
+         cardDiv.append(imgDiv);
+         var imgTag = $("<img>");
+         imgTag.attr("src", imageSource);
+         imgDiv.append(imgTag);
+    
+         // Recipe title div 
+         var titleDiv = $("<div>");
+         titleDiv.attr("id", "recipe-title");
+         titleDiv.attr("class", "mdl-card__supporting-text");
+    
+         var titleH2 = $("<h2>");
+         titleH2.attr("id", "card-title");
+         titleH2.attr("class", "mdl-card__title-text");
+         titleH2.text(foundTitle);
+    
+         titleDiv.append(titleH2);
+         cardDiv.append(titleDiv);
+    
+         // Open Recipe button div 
+         var buttonDiv = $("<div>");
+         buttonDiv.attr("class", "mdl-card__actions mdl-card--border");
+    
+         var buttonATag = $("<a>");
+         buttonATag.attr("id", "open-recipe-btn");
+         buttonATag.attr("class", "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect");
+         buttonATag.text("Open Recipe");
+    
+         buttonDiv.append(buttonATag);
+         cardDiv.append(buttonDiv);
+    
+         $(".container-index").prepend(cardDiv);
+    
+        }
+
+    recipesTitles = [];
+
+    $("#save-recipe-button").on("click", function() {
+        let searchedTitle = $("#recipe-1").text();
+        let imgSrc = $("#recipe-image-1").attr("src");
+        console.log(imgSrc);
+
+        //Ingredients save as one continuous string
+        let listOfIngredients = $(".ingredient-list").text();
+        let stepInstructions = $(".instructions").text();
+
+        recipesTitles.push(searchedTitle);
+        localStorage.setItem(`recipe1`, JSON.stringify(recipesTitles));
+
+        createRecipeCardfromSearch(searchedTitle, imgSrc);
+
+        //Save a copy of the recipe into Local storage 
+        saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions);
+
+        });
+
 
     $("body").on("click", ".click-title", function () {
         let titleVal = event.target.value;
         if (titleVal === "1") {
             $("#recipe1").removeClass("hidden");
-            $("#recipe2").addClass("hidden");
-            $("#recipe3").addClass("hidden");
-            $("#recipe4").addClass("hidden");
-            $("#recipe5").addClass("hidden");
-        } else if (titleVal === "2") {
-            $("#recipe1").addClass("hidden");
-            $("#recipe2").removeClass("hidden");
-            $("#recipe3").addClass("hidden");
-            $("#recipe4").addClass("hidden");
-            $("#recipe5").addClass("hidden");
-        } else if (titleVal === "3") {
-            $("#recipe1").addClass("hidden");
-            $("#recipe2").addClass("hidden");
-            $("#recipe3").removeClass("hidden");
-            $("#recipe4").addClass("hidden");
-            $("#recipe5").addClass("hidden");
-        } else if (titleVal === "4") {
-            $("#recipe1").addClass("hidden");
-            $("#recipe2").addClass("hidden");
-            $("#recipe3").addClass("hidden");
-            $("#recipe4").removeClass("hidden");
-            $("#recipe5").addClass("hidden");
-        } else if (titleVal === "5") {
-            $("#recipe1").addClass("hidden");
-            $("#recipe2").addClass("hidden");
-            $("#recipe3").addClass("hidden");
-            $("#recipe4").addClass("hidden");
-            $("#recipe5").removeClass("hidden");
-        }
-    });
-
-    function retrieveRecipe() {
-        var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
-        //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
-        var ingredients = ingredientArray.join();
-        var numberOfRecipes = 5;
-        var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
-
-
-        $.ajax({
-            url: recipeURL,
-            method: "GET"
-        }).then(function (response) {
-            for (var r = 0; r < 5; r++) {
-                let title = capitalizeFirstLetter(response[r].title);
-                $(`#title${r + 1}`).text(`-${title}`);
-                $(`#recipe-${r + 1}`).text(title);
-                $(`#recipe-image-${r + 1}`).attr("src", response[r].image);
-                console.log(response);
-
-                var ingredientsNeeded = response[r].missedIngredients.length;
-
+            
+            //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
+            //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
+            //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+    
+            var ingredients = ingredientArray.join();
+            var numberOfRecipes = 5;
+            var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
+            $.ajax({
+                url: recipeURL,
+                method: "GET"
+            }).then(function (response) {
+            
+                let title = capitalizeFirstLetter(response[0].title);
+            
+                $(`#recipe-1`).text(title);
+                $(`#recipe-image-1`).attr("src", response[0].image);
+                var ingredientsNeeded = response[0].missedIngredients.length;
+                let foundIngredients = [];
+                $("#ingredients1").empty();
                 for (let k = 0; k < ingredientsNeeded; k++) {
+                    foundIngredients.push(response[0].missedIngredients[k].name);
+                    //console.log(foundIngredients);
                     let li = $("<li></li>");
-                    li.text(response[r].missedIngredients[k].name);
-                    $(`#ingredients${r + 1}`).append(li);
+                    li.text(response[0].missedIngredients[k].name);
+                    li.text(capitalizeFirstLetter(li.text()));
+
+                    $(`#ingredients1`).append(li);
                 }
 
-                var recipeID = response[r].id;
+                var recipeID = response[0].id;
+                //console.log("title and its ID", recipeID + title);
                 var instructionsURL = "https://api.spoonacular.com/recipes/" + recipeID + "/analyzedInstructions?apiKey=" + apiKey;
+                //console.log(instructionsURL);
+
+                $.ajax({
+                    url: instructionsURL,
+                    method: "GET"
+                }).then(function (response) {
+
+                    if (response.length === 0) {
+                        var li = $("<li></li>");
+                        $(`#recipe-contents-1`).empty();
+                        li.text("No instructions found");
+                        $(`#recipe-contents-1`).append(li);
+                    } else {
+                        $(`#recipe-contents-1`).empty();
+                        for(let k = 0; k < response.length; k++) {
+                            var numberOfSteps = response[k].steps;
+
+                            for (var i = 0; i < numberOfSteps.length; i++) {
+                                var li = $("<li></li>");
+                                li.text(response[k].steps[i].step);
+                                $(`#recipe-contents-1`).append(li);
+
+                                var numberOfIngredients = response[k].steps[i].ingredients.length;
+
+                                for (var j = 0; j < numberOfIngredients; j++) {
+                                    if(response[k].steps[i].ingredients[j].length === 0) {
+                                        //console.log("no ingredients for this step");
+                                    } else {
+                                        //console.log(response[k].steps[i].ingredients[j].name);
+                                        if (foundIngredients.includes(response[k].steps[i].ingredients[j].name)) {
+                                            //console.log("not pushed");
+                                        } else {
+                                            foundIngredients.push(response[k].steps[i].ingredients[j].name);
+                                            //console.log("after push", foundIngredients);
+                                            let ingLi = $("<li></li>");
+                                            ingLi.text(response[k].steps[i].ingredients[j].name);
+                                            ingLi.text(capitalizeFirstLetter(ingLi.text()));
+
+                                            $(`#ingredients1`).append(ingLi);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+            
+        } else if (titleVal === "2") {
+            $("#recipe1").removeClass("hidden");
+
+            //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
+            //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
+            //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+    
+            var ingredients = ingredientArray.join();
+            var numberOfRecipes = 5;
+            var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
+            $.ajax({
+                url: recipeURL,
+                method: "GET"
+            }).then(function (response) {
+            
+                let title = capitalizeFirstLetter(response[1].title);
+            
+                $(`#recipe-1`).text(title);
+                $(`#recipe-image-1`).attr("src", response[1].image);
+                var ingredientsNeeded = response[1].missedIngredients.length;
+                let foundIngredients = [];
+                $("#ingredients1").empty();
+                for (let k = 0; k < ingredientsNeeded; k++) {
+                    foundIngredients.push(response[1].missedIngredients[k].name);
+                    //console.log(foundIngredients);
+                    let li = $("<li></li>");
+                    li.text(response[1].missedIngredients[k].name);
+                    li.text(capitalizeFirstLetter(li.text()));
+                    $(`#ingredients1`).append(li);
+                }
+
+                var recipeID = response[1].id;
+                //console.log("title and its ID", recipeID + title);
+                var instructionsURL = "https://api.spoonacular.com/recipes/" + recipeID + "/analyzedInstructions?apiKey=" + apiKey;
+                //console.log(instructionsURL);
+
+                $.ajax({
+                    url: instructionsURL,
+                    method: "GET"
+                }).then(function (response) {
+
+                    if (response.length === 0) {
+                        var li = $("<li></li>");
+                        $(`#recipe-contents-1`).empty();
+                        li.text("No instructions found");
+                        $(`#recipe-contents-1`).append(li);
+                    } else {
+                        $(`#recipe-contents-1`).empty();
+                        for(let k = 0; k < response.length; k++) {
+                            var numberOfSteps = response[k].steps;
+
+                            for (var i = 0; i < numberOfSteps.length; i++) {
+                                var li = $("<li></li>");
+                                li.text(response[k].steps[i].step);
+                                $(`#recipe-contents-1`).append(li);
+
+                                var numberOfIngredients = response[k].steps[i].ingredients.length;
+
+                                for (var j = 0; j < numberOfIngredients; j++) {
+                                    if(response[k].steps[i].ingredients[j].length === 0) {
+                                        //console.log("no ingredients for this step");
+                                    } else {
+                                        //console.log(response[k].steps[i].ingredients[j].name);
+                                        if (foundIngredients.includes(response[k].steps[i].ingredients[j].name)) {
+                                            //console.log("not pushed");
+                                        } else {
+                                            foundIngredients.push(response[k].steps[i].ingredients[j].name);
+                                            //console.log("after push", foundIngredients);
+                                            let ingLi = $("<li></li>");
+                                            ingLi.text(response[k].steps[i].ingredients[j].name);
+                                            ingLi.text(capitalizeFirstLetter(ingLi.text()));
+                                            $(`#ingredients1`).append(ingLi);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                }); 
+            });
+
+        } else if (titleVal === "3") {
+            $("#recipe1").removeClass("hidden");
+
+            //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
+            //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
+            //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+    
+            var ingredients = ingredientArray.join();
+            var numberOfRecipes = 5;
+            var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
+            $.ajax({
+                url: recipeURL,
+                method: "GET"
+            }).then(function (response) {
+            
+                let title = capitalizeFirstLetter(response[2].title);
+            
+                $(`#recipe-1`).text(title);
+                $(`#recipe-image-1`).attr("src", response[2].image);
+                var ingredientsNeeded = response[2].missedIngredients.length;
+                let foundIngredients = [];
+                $("#ingredients1").empty();
+                for (let k = 0; k < ingredientsNeeded; k++) {
+                    foundIngredients.push(response[2].missedIngredients[k].name);
+                    //console.log(foundIngredients);
+                    let li = $("<li></li>");
+                    li.text(response[2].missedIngredients[k].name);
+                    li.text(capitalizeFirstLetter(li.text()));
+                    $(`#ingredients1`).append(li);
+                }
+
+                var recipeID = response[2].id;
+                //console.log("title and its ID", recipeID + title);
+                var instructionsURL = "https://api.spoonacular.com/recipes/" + recipeID + "/analyzedInstructions?apiKey=" + apiKey;
+                //console.log(instructionsURL);
+
+                $.ajax({
+                    url: instructionsURL,
+                    method: "GET"
+                }).then(function (response) {
+
+                    if (response.length === 0) {
+                        var li = $("<li></li>");
+                        $(`#recipe-contents-1`).empty();
+                        li.text("No instructions found");
+                        $(`#recipe-contents-1`).append(li);
+                    } else {
+                        $(`#recipe-contents-1`).empty();
+                        for(let k = 0; k < response.length; k++) {
+                            var numberOfSteps = response[k].steps;
+
+                            for (var i = 0; i < numberOfSteps.length; i++) {
+                                var li = $("<li></li>");
+                                li.text(response[k].steps[i].step);
+                                $(`#recipe-contents-1`).append(li);
+
+                                var numberOfIngredients = response[k].steps[i].ingredients.length;
+
+                                for (var j = 0; j < numberOfIngredients; j++) {
+                                    if(response[k].steps[i].ingredients[j].length === 0) {
+                                       //console.log("no ingredients for this step");
+                                    } else {
+                                        //console.log(response[k].steps[i].ingredients[j].name);
+                                        if (foundIngredients.includes(response[k].steps[i].ingredients[j].name)) {
+                                            //console.log("not pushed");
+                                        } else {
+                                            foundIngredients.push(response[k].steps[i].ingredients[j].name);
+                                            //console.log("after push", foundIngredients);
+                                            let ingLi = $("<li></li>");
+                                            ingLi.text(response[k].steps[i].ingredients[j].name);
+                                            ingLi.text(capitalizeFirstLetter(ingLi.text()));
+                                            $(`#ingredients1`).append(ingLi);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                });
+            });
+
+        } else if (titleVal === "4") {
+            $("#recipe1").removeClass("hidden");
+
+            //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
+            //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
+            //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+    
+            var ingredients = ingredientArray.join();
+            var numberOfRecipes = 5;
+            var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
+            $.ajax({
+                url: recipeURL,
+                method: "GET"
+            }).then(function (response) {
+            
+                let title = capitalizeFirstLetter(response[3].title);
+            
+                $(`#recipe-1`).text(title);
+                $(`#recipe-image-1`).attr("src", response[3].image);
+                var ingredientsNeeded = response[3].missedIngredients.length;
+                let foundIngredients = [];
+                $("#ingredients1").empty();
+                for (let k = 0; k < ingredientsNeeded; k++) {
+                    foundIngredients.push(response[3].missedIngredients[k].name);
+                    //console.log(foundIngredients);
+                    let li = $("<li></li>");
+                    li.text(response[3].missedIngredients[k].name);
+                    li.text(capitalizeFirstLetter(li.text()));
+                    $(`#ingredients1`).append(li);
+                }
+
+                var recipeID = response[3].id;
+                //console.log("title and its ID", recipeID + title);
+                var instructionsURL = "https://api.spoonacular.com/recipes/" + recipeID + "/analyzedInstructions?apiKey=" + apiKey;
+                //console.log(instructionsURL);
 
                 $.ajax({
                     url: instructionsURL,
                     method: "GET"
                 }).then(function (response) {
                     if (response.length === 0) {
-                        //console.log("No instructions found.");
+                        var li = $("<li></li>");
+                        $(`#recipe-contents-1`).empty();
+                        li.text("No instructions found");
+                        $(`#recipe-contents-1`).append(li);
                     } else {
-                        for (let k = 0; k < response.length; k++) {
-                            var numberOfSteps = response[k].steps.length;
-                            for (var i = 0; i < numberOfSteps; i++) {
+                        $(`#recipe-contents-1`).empty();
+                        for(let k = 0; k < response.length; k++) {
+                            var numberOfSteps = response[k].steps;
+
+                            for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
                                 li.text(response[k].steps[i].step);
-                                $(`#recipe-contents-${i + 1}`).append(li);
+                                $(`#recipe-contents-1`).append(li);
 
                                 var numberOfIngredients = response[k].steps[i].ingredients.length;
 
                                 for (var j = 0; j < numberOfIngredients; j++) {
-                                    //console.log(response);
-                                    if (response[k].steps[i].ingredients[j].name === null) {
-                                        return;
+                                    if(response[k].steps[i].ingredients[j].length === 0) {
+                                       // console.log("no ingredients for this step");
                                     } else {
-                                        //console.log(response[k].steps[i].ingredients[j].name);
-
-                                        let foundIngredients = [];
-                                        foundIngredients.push(response[k].steps[i].ingredients[j].name);
-
-                                        checkDuplicate(foundIngredients);
-
-                                        for (let m = 0; m < foundIngredients.length; m++) {
+                                        console.log(response[k].steps[i].ingredients[j].name);
+                                        if (foundIngredients.includes(response[k].steps[i].ingredients[j].name)) {
+                                            //console.log("not pushed");
+                                        } else {
+                                            foundIngredients.push(response[k].steps[i].ingredients[j].name);
+                                            //console.log("after push", foundIngredients);
                                             let ingLi = $("<li></li>");
-                                            ingLi.text(foundIngredients[m]);
-                                            $(`#ingredients${i + 1}`).append(ingLi);
+                                            ingLi.text(response[k].steps[i].ingredients[j].name);
+                                            ingLi.text(capitalizeFirstLetter(ingLi.text()));
+                                            $(`#ingredients1`).append(ingLi);
                                         }
                                     }
                                 }
                             }
                         }
-
                     }
                 });
-            }
-        });
-    }
+            });
+
+        } else if (titleVal === "5") {
+            $("#recipe1").removeClass("hidden");
+
+            //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
+            //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
+            //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+    
+            var ingredients = ingredientArray.join();
+            var numberOfRecipes = 5;
+            var recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
+            $.ajax({
+                url: recipeURL,
+                method: "GET"
+            }).then(function (response) {
+            
+                let title = capitalizeFirstLetter(response[4].title);
+            
+                $(`#recipe-1`).text(title);
+                $(`#recipe-image-1`).attr("src", response[4].image);
+                var ingredientsNeeded = response[4].missedIngredients.length;
+                let foundIngredients = [];
+                $("#ingredients1").empty();
+                for (let k = 0; k < ingredientsNeeded; k++) {
+                    foundIngredients.push(response[4].missedIngredients[k].name);
+                    //console.log(foundIngredients);
+                    let li = $("<li></li>");
+                    li.text(response[4].missedIngredients[k].name);
+                    li.text(capitalizeFirstLetter(li.text()));
+                    $(`#ingredients1`).append(li);
+                }
+
+                var recipeID = response[4].id;
+                //console.log("title and its ID", recipeID + title);
+                var instructionsURL = "https://api.spoonacular.com/recipes/" + recipeID + "/analyzedInstructions?apiKey=" + apiKey;
+                //console.log(instructionsURL);
+
+                $.ajax({
+                    url: instructionsURL,
+                    method: "GET"
+                }).then(function (response) {
+                    if (response.length === 0) {
+                        var li = $("<li></li>");
+                        $(`#recipe-contents-1`).empty();
+                        li.text("No instructions found");
+                        $(`#recipe-contents-1`).append(li);
+                    } else {
+                        $(`#recipe-contents-1`).empty();
+                        for(let k = 0; k < response.length; k++) {
+                            var numberOfSteps = response[k].steps;
+
+                            for (var i = 0; i < numberOfSteps.length; i++) {
+                                var li = $("<li></li>");
+                                li.text(response[k].steps[i].step);
+                                $(`#recipe-contents-1`).append(li);
+
+                                var numberOfIngredients = response[k].steps[i].ingredients.length;
+
+                                for (var j = 0; j < numberOfIngredients; j++) {
+                                    if(response[k].steps[i].ingredients[j].length === 0) {
+                                        //console.log("no ingredients for this step");
+                                    } else {
+                                        //console.log(response[k].steps[i].ingredients[j].name);
+                                        if (foundIngredients.includes(response[k].steps[i].ingredients[j].name)) {
+                                            //console.log("not pushed");
+                                        } else {
+                                            foundIngredients.push(response[k].steps[i].ingredients[j].name);
+                                            //console.log("after push", foundIngredients);
+                                            let ingLi = $("<li></li>");
+                                            ingLi.text(response[k].steps[i].ingredients[j].name);
+                                            ingLi.text(capitalizeFirstLetter(ingLi.text()));
+                                            $(`#ingredients1`).append(ingLi);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        }
+    });
 });
 
 
@@ -227,7 +606,7 @@ function createRecipeDialog() {
             .addEventListener('click', function () {
                 dialog.close();
             });
-    }());
+    });
 }
 
 function addSaveButtonClickListener() {
@@ -310,6 +689,8 @@ function saveUserInputToLocalStorage(title, ingredients, instructions, recipeIma
 
         // Update "Recipe" in local storage 
         localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
+
+        console.log(recipesCopy);
     }
 }
 
@@ -405,4 +786,5 @@ function OpenRecipeButtonClickListener() {
     openRecipeBtn.on("click", function () {
         // *if open recipe btn is clicked, show the whole recipe for that given card
     });
+
 }
