@@ -31,7 +31,8 @@ $(document).ready(function () {
             //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
 
             var ingredients = ingredientArray.join();
             var numberOfRecipes = 5;
@@ -49,7 +50,20 @@ $(document).ready(function () {
         }
     });
 
-    let numberOfSteps;
+    //Within both AJAX functions 
+    $("#save-recipe-button").on("click", function() {
+        let searchedTitle = $("#recipe-1").text();
+        //Ingredients save as one continuous string
+        let listOfIngredients = $(".ingredient-list").text();
+        let stepInstructions = $(".instructions").text();
+
+        //Save a copy of the recipe into Local storage 
+        saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions);
+    
+        //Create recipe card
+        createAndDisplayRecipeOnCard(searchedTitle, listOfIngredients, stepInstructions); 
+        });
+
 
     $("body").on("click", ".click-title", function () {
         let titleVal = event.target.value;
@@ -59,7 +73,8 @@ $(document).ready(function () {
             //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
     
             var ingredients = ingredientArray.join();
             var numberOfRecipes = 5;
@@ -100,12 +115,11 @@ $(document).ready(function () {
                         var li = $("<li></li>");
                         $(`#recipe-contents-1`).empty();
                         li.text("No instructions found");
-                        numberOfSteps = li.text();
                         $(`#recipe-contents-1`).append(li);
                     } else {
                         $(`#recipe-contents-1`).empty();
                         for(let k = 0; k < response.length; k++) {
-                            numberOfSteps = response[k].steps;
+                            var numberOfSteps = response[k].steps;
 
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
@@ -135,20 +149,6 @@ $(document).ready(function () {
                             }
                         }
                     }
-                     //Within both AJAX functions 
-                $("#save-recipe-button").on("click", function() {
-                let searchedTitle = $("#recipe-1").text();
-                let listOfIngredients = foundIngredients;
-                let stepInstructions = numberOfSteps;
-
-                console.log(stepInstructions);
-
-                //Save a copy of the recipe into Local storage 
-                //saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions);
-        
-                //Create recipe card
-                //createAndDisplayRecipeOnCard(searchedTitle, listOfIngredients, stepInstructions); 
-                });
                 });
             });
             
@@ -158,7 +158,8 @@ $(document).ready(function () {
             //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
     
             var ingredients = ingredientArray.join();
             var numberOfRecipes = 5;
@@ -198,12 +199,11 @@ $(document).ready(function () {
                         var li = $("<li></li>");
                         $(`#recipe-contents-1`).empty();
                         li.text("No instructions found");
-                        numberOfSteps = li.text();
                         $(`#recipe-contents-1`).append(li);
                     } else {
                         $(`#recipe-contents-1`).empty();
                         for(let k = 0; k < response.length; k++) {
-                            numberOfSteps = response[k].steps;
+                            var numberOfSteps = response[k].steps;
 
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
@@ -232,20 +232,6 @@ $(document).ready(function () {
                             }
                         }
                     } 
-                    //Within both AJAX functions 
-                $("#save-recipe-button").on("click", function() {
-                    let searchedTitle = $("#recipe-1").text();
-                    let listOfIngredients = foundIngredients;
-                    let stepInstructions = numberOfSteps;
-    
-                    console.log(stepInstructions);
-    
-                    //Save a copy of the recipe into Local storage 
-                    //saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions);
-            
-                    //Create recipe card
-                    //createAndDisplayRecipeOnCard(searchedTitle, listOfIngredients, stepInstructions); 
-                    });
                 }); 
             });
 
@@ -255,7 +241,8 @@ $(document).ready(function () {
             //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
     
             var ingredients = ingredientArray.join();
             var numberOfRecipes = 5;
@@ -295,12 +282,11 @@ $(document).ready(function () {
                         var li = $("<li></li>");
                         $(`#recipe-contents-1`).empty();
                         li.text("No instructions found");
-                        numberOfSteps = li.text();
                         $(`#recipe-contents-1`).append(li);
                     } else {
                         $(`#recipe-contents-1`).empty();
                         for(let k = 0; k < response.length; k++) {
-                            numberOfSteps = response[k].steps;
+                            var numberOfSteps = response[k].steps;
 
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
@@ -329,20 +315,6 @@ $(document).ready(function () {
                             }
                         }
                     } 
-                //Within both AJAX functions 
-                $("#save-recipe-button").on("click", function() {
-                    let searchedTitle = $("#recipe-1").text();
-                    let listOfIngredients = foundIngredients;
-                    let stepInstructions = numberOfSteps;
-    
-                    console.log(stepInstructions);
-    
-                    //Save a copy of the recipe into Local storage 
-                    //saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions);
-            
-                    //Create recipe card
-                    //createAndDisplayRecipeOnCard(searchedTitle, listOfIngredients, stepInstructions); 
-                    });
                 });
             });
 
@@ -352,7 +324,8 @@ $(document).ready(function () {
             //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
     
             var ingredients = ingredientArray.join();
             var numberOfRecipes = 5;
@@ -391,12 +364,11 @@ $(document).ready(function () {
                         var li = $("<li></li>");
                         $(`#recipe-contents-1`).empty();
                         li.text("No instructions found");
-                        numberOfSteps = li.text();
                         $(`#recipe-contents-1`).append(li);
                     } else {
                         $(`#recipe-contents-1`).empty();
                         for(let k = 0; k < response.length; k++) {
-                            numberOfSteps = response[k].steps;
+                            var numberOfSteps = response[k].steps;
 
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
@@ -424,23 +396,7 @@ $(document).ready(function () {
                                 }
                             }
                         }
-                    } 
-                
-                //Within both AJAX functions 
-                $("#save-recipe-button").on("click", function() {
-                    let searchedTitle = $("#recipe-1").text();
-                    let listOfIngredients = foundIngredients;
-                    let stepInstructions = numberOfSteps;
-    
-                    console.log(stepInstructions);
-    
-                    //Save a copy of the recipe into Local storage 
-                    //saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions);
-            
-                    //Create recipe card
-                    //createAndDisplayRecipeOnCard(searchedTitle, listOfIngredients, stepInstructions); 
-                    });
-
+                    }
                 });
             });
 
@@ -450,7 +406,8 @@ $(document).ready(function () {
             //var apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //var apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //var apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //var apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            var apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
     
             var ingredients = ingredientArray.join();
             var numberOfRecipes = 5;
@@ -489,12 +446,11 @@ $(document).ready(function () {
                         var li = $("<li></li>");
                         $(`#recipe-contents-1`).empty();
                         li.text("No instructions found");
-                        numberOfSteps = li.text();
                         $(`#recipe-contents-1`).append(li);
                     } else {
                         $(`#recipe-contents-1`).empty();
                         for(let k = 0; k < response.length; k++) {
-                            numberOfSteps = response[k].steps;
+                            var numberOfSteps = response[k].steps;
 
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
@@ -522,23 +478,7 @@ $(document).ready(function () {
                                 }
                             }
                         }
-                    } 
-                
-                //Within both AJAX functions 
-                $("#save-recipe-button").on("click", function() {
-                    let searchedTitle = $("#recipe-1").text();
-                    let listOfIngredients = foundIngredients;
-                    let stepInstructions = numberOfSteps;
-    
-                    console.log(stepInstructions);
-    
-                    //Save a copy of the recipe into Local storage 
-                    //saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions);
-            
-                    //Create recipe card
-                    //createAndDisplayRecipeOnCard(searchedTitle, listOfIngredients, stepInstructions); 
-                    });
-
+                    }
                 });
             });
         }
