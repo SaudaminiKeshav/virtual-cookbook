@@ -383,7 +383,8 @@ function getImage(input) {
 
         // event listener for file reader 
         reader.onload = function (e) {
-            $("#preview").setAttribute('src', e.target.result);
+            // changed from "setAttribute"
+            $("#preview").attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
     }

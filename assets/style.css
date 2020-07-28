@@ -1,45 +1,57 @@
 body {
-    overflow-x: hidden;
+    background-image: url(./images/cookbook.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: auto;
 }
 
 .navbar {
-    background-color: rgb(36, 207, 50);
-    width: 100%;
-    height: 40px;
-    padding: 8px;
-    padding-bottom: 25px;
+    height: 36px;
 }
 
-.nav-link {
-    color: cornsilk;
+a.nav-link {
+    text-decoration: none;
+    padding:0.3em 1.2em;
+    border:0.16em solid rgba(255,255,255,0);
+    border-radius:2em;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    background-color:#201f1f
+}
+
+a.nav-link:hover{
+    border-color: rgba(255,255,255,1);
+}
+
+@media all and (max-width:30em){
+    a.nav-link{
+        display:block;
+        margin:0.2em auto;
+    }
 }
 
 .home {
-    background-color: rgb(40, 20, 220);
-    text-align: center;
-    padding: 3px;
     margin-right: 10px;
     border-radius: 20px;
-    width: 60px;
     float: left;
     list-style: none;
 }
 
 .searchBtn {
-    background-color: rgb(40, 20, 220);
     text-align: center;
-    padding: 3px;
     border-radius: 20px;
-    width: 60px;
     float: left;
     list-style: none;
 }
 
 #header {
     background-color: coral;
+    font-weight: 700;
     text-align: center;
-    padding: 45px;
-    width: 95%;
+    padding: 28px;
+    opacity: 0.8;
 }
 
 .add-recipe {
@@ -52,7 +64,7 @@ body {
 }
 
 #dialog-title {
-    background: rgb(47, 255, 168);
+    background-image: url(./images/background2.jpg);
     height: 55px;
 }
 
@@ -229,12 +241,13 @@ input[type=text]:focus {
 }
 
 #footer {
-    background-color: coral;
-    text-align: center;
-    clear: both;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     z-index: 5;
+}
+
+#footer-text {
+    font-weight: bold;
 }
