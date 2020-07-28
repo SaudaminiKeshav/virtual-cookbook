@@ -5,12 +5,18 @@ $(document).ready(function () {
 
     let cookbook;
 
-    if (localStorage.getItem("cookbookLocalStorage") === null) {
+    if (localStorage.getItem('Recipes') === null) {
         cookbook = [""];
-        localStorage.setItem("cookbookLocalStorage", JSON.stringify(cookbook));
+        localStorage.setItem('Recipes', JSON.stringify(cookbook));
     } else {
-        cookbook = JSON.parse(localStorage.getItem("cookbookLocalStorage"));
-        //run render saved recipes function
+        cookbook = JSON.parse(localStorage.getItem('Recipes'));
+
+        for(let i = 0; i < cookbook.length; i++) {
+            let localTitle = cookbook[i].key;
+            
+            console.log(localTitle);
+        }
+
     }
 
     // Add recipe code
@@ -92,8 +98,6 @@ $(document).ready(function () {
     function createRecipeCardfromSearch(foundTitle, imageSource) {
         //foundImage input takes in a string for src attribute
     
-        console.log("createRecipeCardFromSearch ran");
-    
          var cardDiv = $("<div>");
          cardDiv.attr("id", "recipe-card");
          cardDiv.attr("class", "demo-card-square mdl-card mdl-shadow--2dp");
@@ -140,19 +144,23 @@ $(document).ready(function () {
     $("#save-recipe-button").on("click", function() {
         let searchedTitle = $("#recipe-1").text();
         let imgSrc = $("#recipe-image-1").attr("src");
-        console.log(imgSrc);
 
         //Ingredients save as one continuous string
         let listOfIngredients = $(".ingredient-list").text();
         let stepInstructions = $(".instructions").text();
 
-        recipesTitles.push(searchedTitle);
-        localStorage.setItem(`recipe1`, JSON.stringify(recipesTitles));
+        // recipesTitles.push(searchedTitle);
+        // localStorage.setItem(`recipe1`, JSON.stringify(recipesTitles));
+        // var ingredients = [];
+        // $("#ingredients1").each(function(){
+        //     ingredients.push(this.innerHTML);
+        // })
+        // localStorage.setItem(`${searchedTitle}-ingredients`, JSON.stringify(ingredients));
 
         createRecipeCardfromSearch(searchedTitle, imgSrc);
 
         //Save a copy of the recipe into Local storage 
-        saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions);
+        saveUserInputToLocalStorage(searchedTitle, listOfIngredients, stepInstructions, imgSrc);
 
         });
 
@@ -630,7 +638,7 @@ function addSaveButtonClickListener() {
 
 function saveUserInputToLocalStorage(title, ingredients, instructions, recipeImage) {
 
-    console.log(recipeImage);
+    //console.log(recipeImage);
     // Create an array to save a copy of local storage array 
     var Recipes = [];
 
@@ -690,7 +698,6 @@ function saveUserInputToLocalStorage(title, ingredients, instructions, recipeIma
         // Update "Recipe" in local storage 
         localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
 
-        console.log(recipesCopy);
     }
 }
 
