@@ -239,16 +239,19 @@ function addSaveButtonClickListener() {
         let dialogTitleVal = $("#input-title").val().trim();
         let dialogIngredientsVal = $("#input-ingredients").val().trim();
         let dialogInstructionsVal = $("#input-instructions").val().trim();
+        let dialogImgVal = $("#preview").attr("src");
 
         // Save a copy of the user input into Local storage 
-        saveUserInputToLocalStorage(dialogTitleVal, dialogIngredientsVal, dialogInstructionsVal);
+        saveUserInputToLocalStorage(dialogTitleVal, dialogIngredientsVal, dialogInstructionsVal, dialogImgVal);
 
         // create and display recipe card using the user input 
-        createAndDisplayRecipeOnCard(dialogTitleVal, dialogIngredientsVal, dialogInstructionsVal);
+        createAndDisplayRecipeOnCard(dialogTitleVal, dialogIngredientsVal, dialogInstructionsVal, dialogImgVal);
     });
 }
 
-function saveUserInputToLocalStorage(title, ingredients, instructions) {
+function saveUserInputToLocalStorage(title, ingredients, instructions, recipeImage) {
+
+    console.log(recipeImage);
     // Create an array to save a copy of local storage array 
     var Recipes = [];
 
@@ -259,7 +262,8 @@ function saveUserInputToLocalStorage(title, ingredients, instructions) {
         recipesCopy.push({
             key: title,
             ingredients: ingredients,
-            instructions: instructions
+            instructions: instructions,
+            image: recipeImage
         })
         // Create a new Recipes array using our local copr - recipesCopy
         localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
@@ -275,7 +279,8 @@ function saveUserInputToLocalStorage(title, ingredients, instructions) {
             recipesCopy.push({
                 key: title,
                 ingredients: ingredients,
-                instructions: instructions
+                instructions: instructions,
+                image: recipeImage
             })
 
             // Update "Recipe" in local storage 
@@ -299,7 +304,8 @@ function saveUserInputToLocalStorage(title, ingredients, instructions) {
         recipesCopy.push({
             key: title,
             ingredients: ingredients,
-            instructions: instructions
+            instructions: instructions,
+            image: recipeImage
         })
 
         // Update "Recipe" in local storage 
@@ -307,7 +313,7 @@ function saveUserInputToLocalStorage(title, ingredients, instructions) {
     }
 }
 
-function createAndDisplayRecipeOnCard(title, ingredients, instruction) {
+function createAndDisplayRecipeOnCard(title, ingredients, instruction, recipeImage) {
 
     // Check if neither of the fields are empty 
     if (title != "" && ingredients != "" && instruction != "") {
@@ -320,11 +326,12 @@ function createAndDisplayRecipeOnCard(title, ingredients, instruction) {
         // Start building the card div 
         var cardDiv = $("<div>");
         cardDiv.attr("id", "recipe-card");
-        cardDiv.attr("class", "demo-card-square mdl-card mdl-shadow--2dp");
+        cardDiv.attr("class", "demo-card-square mdl-card mdl-shadow--2dp recipe-card-div");
 
         // Recipe image div 
-        var imgDiv = $("<div>");
-        imgDiv.attr("class", "mdl-card__title mdl-card--expand");
+        var imgDiv = $("<img>");
+        imgDiv.attr("class", "mdl-card__title mdl-card--expand card-image");
+        imgDiv.attr("src", recipeImage);
 
         cardDiv.append(imgDiv);
 
@@ -374,6 +381,7 @@ function dialogAddImageButtonClickListener() {
 
 function getImage(input) {
     var reader;
+    var resultURL = "";
 
     if (input.files && input.files[0]) {
         event.preventDefault();
@@ -385,6 +393,7 @@ function getImage(input) {
         reader.onload = function (e) {
             // changed from "setAttribute"
             $("#preview").attr('src', e.target.result);
+            resultURL = e.target.value;
         }
         reader.readAsDataURL(input.files[0]);
     }
