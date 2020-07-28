@@ -13,8 +13,12 @@ $(document).ready(function () {
 
         for(let i = 0; i < cookbook.length; i++) {
             let localTitle = cookbook[i].key;
-            
-            console.log(localTitle);
+            //let localIngredients = cookbook[i].ingredients;
+            //let localInstructions = cookbook[i].instructions;
+            let localImage = cookbook[i].image;
+
+            createRecipeCardfromSearch(localTitle, localImage);
+            //console.log(cookbook);
         }
 
     }
