@@ -146,6 +146,9 @@ $(document).ready(function () {
     recipesTitles = [];
 
     $("#save-recipe-button").on("click", function() {
+        $("#save-recipe-button").addClass("hidden");
+        $(".saved-to-recipes").removeClass("hidden");
+
         let searchedTitle = $("#recipe-1").text();
         let imgSrc = $("#recipe-image-1").attr("src");
 
@@ -627,22 +630,22 @@ function createRecipeDialog() {
         var dialog = document.querySelector('#dialog');
 
         // Register dialog 
-        if (!dialog.showModal) {
-            dialogPolyfill.registerDialog(dialog);
-        }
+        // if (!dialog.showModal) {
+        //     dialogPolyfill.registerDialog(dialog);
+        // }
 
         // Click event listener for addRecipe button 
-        addRecipeButton.addEventListener('click', function dialogClick() {
-            // On click display dialog 
-            dialog.showModal();
-        });
+        // addRecipeButton.addEventListener('click', function dialogClick() {
+        //     // On click display dialog 
+        //     dialog.showModal();
+        // });
 
         // Add event  listener to Cancel button
-        dialog.querySelector('button:not([disabled])')
-            .addEventListener('click', function () {
-                dialog.close();
-            });
-    }());
+    //     dialog.querySelector('button:not([disabled])')
+    //         .addEventListener('click', function () {
+    //             dialog.close();
+    //         });
+     }());
 }
 
 function addSaveButtonClickListener() {
