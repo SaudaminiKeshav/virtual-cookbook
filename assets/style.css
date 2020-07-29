@@ -235,11 +235,13 @@ height:75px;
 .saved-to-recipes {
     padding: 15px;
     font-size: 18px;
+    margin-left: 50px;
 }
 
 .search-li-tags {
     padding-top: 15px;
 }
+
 .instructions {
     clear: both;
     margin-left: 5%;
@@ -263,6 +265,12 @@ height:75px;
 .save-recipe-button {
     margin-left: 50%;
     margin-right: 50%;
+    background-color: rgb(231, 143, 28);
+}
+#save-recipe-button {
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background-color: rgb(231, 143, 28);
 }
 .click-title {

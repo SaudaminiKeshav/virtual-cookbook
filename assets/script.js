@@ -32,8 +32,8 @@ $(document).ready(function () {
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -121,11 +121,13 @@ $(document).ready(function () {
 
         if (titleVal === "1") {
             $("#recipe1").removeClass("hidden");
+            $(".saved-to-recipes").addClass("hidden");
+            $("#save-recipe-button").removeClass("hidden");
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -209,11 +211,13 @@ $(document).ready(function () {
             });
         } else if (titleVal === "2") {
             $("#recipe1").removeClass("hidden");
+            $(".saved-to-recipes").addClass("hidden");
+            $("#save-recipe-button").removeClass("hidden");
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -297,11 +301,13 @@ $(document).ready(function () {
             });
         } else if (titleVal === "3") {
             $("#recipe1").removeClass("hidden");
+            $(".saved-to-recipes").addClass("hidden");
+            $("#save-recipe-button").removeClass("hidden");
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -383,11 +389,13 @@ $(document).ready(function () {
             });
         } else if (titleVal === "4") {
             $("#recipe1").removeClass("hidden");
+            $(".saved-to-recipes").addClass("hidden");
+            $("#save-recipe-button").removeClass("hidden");
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -471,11 +479,13 @@ $(document).ready(function () {
             });
         } else if (titleVal === "5") {
             $("#recipe1").removeClass("hidden");
+            $(".saved-to-recipes").addClass("hidden");
+            $("#save-recipe-button").removeClass("hidden");
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
