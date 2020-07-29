@@ -304,9 +304,22 @@ height:75px;
     left: 0;
     bottom: 0;
     width: 100%;
-    z-index: 5;
+    z-index: 0;
 }
 
 #footer-text {
     font-weight: bold;
+}
+
+/* Open Recipe Card */
+.openButton {
+    background-color: rgb(255,64,129);
+    border-style: none;
+    color: white;
+    
+}
+
+#recipe2 {
+    margin-left: 10%;
+    margin-right: 10%;
 }
