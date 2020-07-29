@@ -101,8 +101,8 @@ $(document).ready(function () {
         let imgSrc = $("#recipe-image-1").attr("src");
 
         //Ingredients save as one continuous string
-        let listOfIngredients = $(".ingredient-list").text();
-        let stepInstructions = $(".instructions").text();
+        let listOfIngredients = $("#ingredients1").text();
+        let stepInstructions = $("#recipe-contents-1").text();
         // recipesTitles.push(searchedTitle);
         // localStorage.setItem(`recipe1`, JSON.stringify(recipesTitles));
         // let ingredients = [];
@@ -118,6 +118,8 @@ $(document).ready(function () {
 
     $("body").on("click", ".click-title", function () {
         let titleVal = event.target.value;
+        $(".saved-to-recipes").addClass("hidden");
+        $("#save-recipe-button").removeClass("hidden");
 
         if (titleVal === "1") {
             $("#recipe1").removeClass("hidden");
@@ -656,7 +658,6 @@ function addSaveButtonClickListener() {
 }
 
 function saveHomeDataToLocalStorage(title, ingredients, instructions, recipeImage) {
-    //console.log(recipeImage);
     // Create an array to save a copy of local storage array 
     let Recipes;
 
@@ -761,19 +762,21 @@ function saveHomeDataToLocalStorage(title, ingredients, instructions, recipeImag
 }
 
 function saveSearchDataToLocalStorage(title, ingredients, instructions, recipeImage) {
-    //console.log(recipeImage);
     // Create an array to save a copy of local storage array 
-    let SearchedRecipes;
+    let SearchedRecipes = [];
 
     // Check if the "Recipe" array already exists in the Local storage 
     if (localStorage.getItem('SearchedRecipes') === null) {
+        console.log("it is null");
+        console.log(SearchedRecipes);
         // Push the new recipe on our local copy 
-        recipesCopy.push({
+        SearchedRecipes.push({
             key: title,
             ingredients: ingredients,
             instructions: instructions,
             image: recipeImage
-        })
+        });
+        console.log(SearchedRecipes);
 
         // Create a new Recipes array using our local copr - recipesCopy
         localStorage.setItem('SearchedRecipes', JSON.stringify(SearchedRecipes));
