@@ -32,8 +32,8 @@ $(document).ready(function () {
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -124,8 +124,8 @@ $(document).ready(function () {
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -212,8 +212,8 @@ $(document).ready(function () {
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -300,8 +300,8 @@ $(document).ready(function () {
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -386,8 +386,8 @@ $(document).ready(function () {
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -474,8 +474,8 @@ $(document).ready(function () {
             //let apiKey = "6f8efb8f773b4ba3bc9fcb1c1d7d0e24";
             //let apiKey = "c3cbd63708ed4e5b9e24c441f3712e1d";
             //let apiKey = "b97317ef164f48c1b2fb4223ec2365bf";
-            //let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
-            let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
+            let apiKey = "2c9a3a3c72c5460eb5b28bd2ae462f90";
+            //let apiKey = "c1bea9a53ed6441b8bd560922ed37af5";
             let ingredients = ingredientArray.join();
             let numberOfRecipes = 5;
             let recipeURL = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredients + "&number=" + numberOfRecipes;
@@ -573,6 +573,8 @@ function homePageSpecificFunctions() {
 
     // Loads recipes onto card from storage 
     loadRecipesFromLocalStorageOnRefresh();
+
+    //openRecipe();
 }
 
 function loadRecipesFromLocalStorageOnRefresh() {
@@ -660,7 +662,23 @@ function saveHomeDataToLocalStorage(title, ingredients, instructions, recipeImag
 
     // Check if the "Recipe" array already exists in the Local storage 
     if (localStorage.getItem('Recipes') === null) {
+        console.log("storage is null");
         // Push the new recipe on our local copy 
+        recipesCopy.push({
+            key: title,
+            ingredients: ingredients,
+            instructions: instructions,
+            image: recipeImage
+        });
+
+        // Create a new Recipes array using our local copr - recipesCopy
+        localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
+    } else {
+        console.log("second condition");
+        // Else fetch the existing array from local storage 
+        Recipes = JSON.parse(localStorage.getItem('Recipes'));
+        console.log(Recipes);
+
         recipesCopy.push({
             key: title,
             ingredients: ingredients,
@@ -668,28 +686,39 @@ function saveHomeDataToLocalStorage(title, ingredients, instructions, recipeImag
             image: recipeImage
         })
 
-        // Create a new Recipes array using our local copr - recipesCopy
+        // Update "Recipe" in local storage 
         localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
-    } else {
-        // Else fetch the existing array from local storage 
-        Recipes = JSON.parse(localStorage.getItem('Recipes'));
 
         // Check if Recipe array on local storage is empty 
         if ((Recipes.length == 0 && recipesCopy.length == 0)) {
             // Push the new recipe on our local copy 
+            console.log("this condition was true");
             recipesCopy.push({
                 key: title,
                 ingredients: ingredients,
                 instructions: instructions,
                 image: recipeImage
-            })
+            });
 
             // Update "Recipe" in local storage 
-            localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
+            localStorage.setItem('Recipes', JSON.stringify(Recipes));
         }
 
         // If the array existing and is not empty, push an object onto the array 
         else if ((Recipes.length != 0 && recipesCopy.length != 0)) {
+            console.log("third condition");
+            Recipes.push({
+                key: title,
+                ingredients: ingredients,
+                instructions: instructions,
+                image: recipeImage
+            });
+            console.log(Recipes);
+            console.log("has been pushed");
+            localStorage.setItem('Recipes', JSON.stringify(Recipes));
+
+
+
 
             // Check the recipe with the same titlte already exists 
             for (let i = 0; i < recipesCopy.length; i++) {
@@ -697,6 +726,7 @@ function saveHomeDataToLocalStorage(title, ingredients, instructions, recipeImag
 
                     // Delete the old recipe with the same title
                     recipesCopy.splice(i, 1);
+                    
                 }
             }
 
@@ -706,12 +736,28 @@ function saveHomeDataToLocalStorage(title, ingredients, instructions, recipeImag
                 ingredients: ingredients,
                 instructions: instructions,
                 image: recipeImage
-            })
+            });
 
             // Update "Recipe" in local storage 
-            localStorage.setItem('Recipes', JSON.stringify(recipesCopy));
+            localStorage.setItem('Recipes', JSON.stringify(Recipes));
+        } else {
+            event.preventDefault();
+            let recipes = JSON.parse(localStorage.getItem('Recipes'));
+            recipesCopy.push(recipes);
+
+
+            recipesCopy.push({
+                key: title,
+                ingredients: ingredients,
+                instructions: instructions,
+                image: recipeImage
+            });
+
+            // Update "Recipe" in local storage 
+            localStorage.setItem('Recipes', JSON.stringify(Recipes));
         }
     }
+    console.log(Recipes);
 }
 
 function saveSearchDataToLocalStorage(title, ingredients, instructions, recipeImage) {
@@ -730,10 +776,22 @@ function saveSearchDataToLocalStorage(title, ingredients, instructions, recipeIm
         })
 
         // Create a new Recipes array using our local copr - recipesCopy
-        localStorage.setItem('SearchedRecipes', JSON.stringify(recipesCopy));
+        localStorage.setItem('SearchedRecipes', JSON.stringify(SearchedRecipes));
     } else {
         // Else fetch the existing array from local storage 
         SearchedRecipes = JSON.parse(localStorage.getItem('SearchedRecipes'));
+
+        //code that works
+        SearchedRecipes.push({
+            key: title,
+            ingredients: ingredients,
+            instructions: instructions,
+            image: recipeImage
+        });
+        console.log(SearchedRecipes);
+        console.log("has been pushed");
+        localStorage.setItem('SearchedRecipes', JSON.stringify(SearchedRecipes));
+        //^^^^^^
 
         // Check if Recipe array on local storage is empty 
         if ((SearchedRecipes.length == 0 && recipesCopy.length == 0)) {
@@ -745,12 +803,12 @@ function saveSearchDataToLocalStorage(title, ingredients, instructions, recipeIm
                 image: recipeImage
             })
             // Update "Recipe" in local storage 
-            localStorage.setItem('SearchedRecipes', JSON.stringify(recipesCopy));
+            localStorage.setItem('SearchedRecipes', JSON.stringify(SearchedRecipes));
         }
 
         // If the array existing and is not empty, push an object onto the array 
         else if ((SearchedRecipes.length != 0 && recipesCopy.length != 0)) 
-            // Check the recipe with the same titlte already exists 
+            //Check the recipe with the same titlte already exists 
             for (let i = 0; i < recipesCopy.length; i++) {
                 if (recipesCopy[i].key == title) {
                     // Delete the old recipe with the same title
@@ -767,13 +825,13 @@ function saveSearchDataToLocalStorage(title, ingredients, instructions, recipeIm
             })
 
             // Update "Recipe" in local storage 
-            localStorage.setItem('SearchedRecipes', JSON.stringify(recipesCopy));
+            localStorage.setItem('SearchedRecipes', JSON.stringify(SearchedRecipes));
     }
 }
 
-function createAndDisplayRecipeOnCard(title, ingredients, instruction, recipeImage) {
+function createAndDisplayRecipeOnCard(title, ingredients, instructions, recipeImage) {
     // Check if neither of the fields are empty 
-    if (title != "" && ingredients != "" && instruction != "") {
+    if (title != "" && ingredients != "" && instructions != "") {
         // Dismiss the dialog
         let dialog = document.querySelector('#dialog');
         dialog.close();
@@ -803,10 +861,11 @@ function createAndDisplayRecipeOnCard(title, ingredients, instruction, recipeIma
         // Open Recipe button div 
         let buttonDiv = $("<div>");
         buttonDiv.attr("class", "mdl-card__actions mdl-card--border");
-        let buttonATag = $("<a>");
+        let buttonATag = $("<button>");
         buttonATag.attr("id", "open-recipe-btn");
-        buttonATag.attr("class", "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect");
+        buttonATag.val(title);
         buttonATag.text("Open Recipe");
+        buttonATag.addClass("openButton");
         buttonDiv.append(buttonATag);
         cardDiv.append(buttonDiv);
 
@@ -848,3 +907,58 @@ function getImage(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+
+$("body").on("click", ".openButton", function() {
+    let Recipes = JSON.parse(localStorage.getItem('Recipes'));
+    let SearchedRecipes = JSON.parse(localStorage.getItem('SearchedRecipes'));
+    console.log(event.target.value);
+    console.log(Recipes);
+    console.log(SearchedRecipes);
+    for (i = 0; i < Recipes.length; i ++) {
+        if (Recipes[i].key.includes(event.target.value)) {
+            let name = event.target.value;
+            console.log("inclded in Recipes");
+            console.log(name);
+            $("#recipe-2").text(name);
+            console.log(Recipes[i].ingredients);
+            $("#ingredients2").text(Recipes[i].ingredients);
+            console.log(Recipes[i].instructions);
+            $("#recipe-contents-2").text(Recipes[i].instructions);
+            console.log(Recipes[i].image);
+            $("#recipe-image-2").attr("src", Recipes[i].image);
+
+            $(".container-index").addClass("hidden");
+
+            $(".individual-recipes").removeClass("hidden");
+        } else {
+            console.log("not included in Recipes");
+        }
+    }
+    for (j = 0; j < SearchedRecipes.length; j++) {
+        if (SearchedRecipes[j].key.includes(event.target.value)) {
+            let name = event.target.value;
+            console.log("included in SearchRecipes");
+            console.log(name);
+            $("#recipe-2").text(name);
+            console.log(SearchedRecipes[j].ingredients);
+            $("#ingredients2").text(SearchedRecipes[j].ingredients);
+            console.log(SearchedRecipes[j].instructions);
+            $("#recipe-contents-2").text(SearchedRecipes[j].instructions);
+            console.log(SearchedRecipes[j].image);
+            $("#recipe-image-2").attr("src", SearchedRecipes[j].image);
+
+            $(".container-index").addClass("hidden");
+
+            $(".individual-recipes").removeClass("hidden");
+        } else {
+            console.log("not included in SearchRecipes");
+        }
+    }
+});
+
+$("body").on("click", "#close", function() {
+    $(".container-index").removeClass("hidden");
+
+    $(".individual-recipes").addClass("hidden");
+})
