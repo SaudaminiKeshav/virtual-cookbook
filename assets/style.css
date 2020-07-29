@@ -233,6 +233,11 @@ height:75px;
     padding: 20px;
 }
 
+.saved-to-recipes {
+    padding: 15px;
+    font-size: 18px;
+}
+
 .search-li-tags {
     padding-top: 15px;
 }
