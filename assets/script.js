@@ -199,6 +199,7 @@ $(document).ready(function () {
                     foundIngredients.push(response[0].missedIngredients[k].name);
                     //console.log(foundIngredients);
                     let li = $("<li></li>");
+                    li.addClass("search-li-tags");
                     li.text(response[0].missedIngredients[k].name);
                     li.text(capitalizeFirstLetter(li.text()));
 
@@ -217,6 +218,7 @@ $(document).ready(function () {
 
                     if (response.length === 0) {
                         var li = $("<li></li>");
+                        li.addClass("search-li-tags");
                         $(`#recipe-contents-1`).empty();
                         li.text("No instructions found");
                         $(`#recipe-contents-1`).append(li);
@@ -227,6 +229,7 @@ $(document).ready(function () {
 
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
+                                li.addClass("search-li-tags");
                                 li.text(response[k].steps[i].step);
                                 $(`#recipe-contents-1`).append(li);
 
@@ -243,6 +246,7 @@ $(document).ready(function () {
                                             foundIngredients.push(response[k].steps[i].ingredients[j].name);
                                             //console.log("after push", foundIngredients);
                                             let ingLi = $("<li></li>");
+                                            ingLi.addClass("search-li-tags");
                                             ingLi.text(response[k].steps[i].ingredients[j].name);
                                             ingLi.text(capitalizeFirstLetter(ingLi.text()));
 
@@ -284,6 +288,7 @@ $(document).ready(function () {
                     foundIngredients.push(response[1].missedIngredients[k].name);
                     //console.log(foundIngredients);
                     let li = $("<li></li>");
+                    li.addClass("search-li-tags");
                     li.text(response[1].missedIngredients[k].name);
                     li.text(capitalizeFirstLetter(li.text()));
                     $(`#ingredients1`).append(li);
@@ -301,6 +306,7 @@ $(document).ready(function () {
 
                     if (response.length === 0) {
                         var li = $("<li></li>");
+                        li.addClass("search-li-tags");
                         $(`#recipe-contents-1`).empty();
                         li.text("No instructions found");
                         $(`#recipe-contents-1`).append(li);
@@ -311,6 +317,7 @@ $(document).ready(function () {
 
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
+                                li.addClass("search-li-tags");
                                 li.text(response[k].steps[i].step);
                                 $(`#recipe-contents-1`).append(li);
 
@@ -327,6 +334,7 @@ $(document).ready(function () {
                                             foundIngredients.push(response[k].steps[i].ingredients[j].name);
                                             //console.log("after push", foundIngredients);
                                             let ingLi = $("<li></li>");
+                                            ingLi.addClass("search-li-tags");
                                             ingLi.text(response[k].steps[i].ingredients[j].name);
                                             ingLi.text(capitalizeFirstLetter(ingLi.text()));
                                             $(`#ingredients1`).append(ingLi);
@@ -367,6 +375,7 @@ $(document).ready(function () {
                     foundIngredients.push(response[2].missedIngredients[k].name);
                     //console.log(foundIngredients);
                     let li = $("<li></li>");
+                    li.addClass("search-li-tags");
                     li.text(response[2].missedIngredients[k].name);
                     li.text(capitalizeFirstLetter(li.text()));
                     $(`#ingredients1`).append(li);
@@ -384,6 +393,7 @@ $(document).ready(function () {
 
                     if (response.length === 0) {
                         var li = $("<li></li>");
+                        li.addClass("search-li-tags");
                         $(`#recipe-contents-1`).empty();
                         li.text("No instructions found");
                         $(`#recipe-contents-1`).append(li);
@@ -394,6 +404,7 @@ $(document).ready(function () {
 
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
+                                li.addClass("search-li-tags");
                                 li.text(response[k].steps[i].step);
                                 $(`#recipe-contents-1`).append(li);
 
@@ -410,6 +421,7 @@ $(document).ready(function () {
                                             foundIngredients.push(response[k].steps[i].ingredients[j].name);
                                             //console.log("after push", foundIngredients);
                                             let ingLi = $("<li></li>");
+                                            ingLi.addClass("search-li-tags");
                                             ingLi.text(response[k].steps[i].ingredients[j].name);
                                             ingLi.text(capitalizeFirstLetter(ingLi.text()));
                                             $(`#ingredients1`).append(ingLi);
@@ -450,6 +462,7 @@ $(document).ready(function () {
                     foundIngredients.push(response[3].missedIngredients[k].name);
                     //console.log(foundIngredients);
                     let li = $("<li></li>");
+                    li.addClass("search-li-tags");
                     li.text(response[3].missedIngredients[k].name);
                     li.text(capitalizeFirstLetter(li.text()));
                     $(`#ingredients1`).append(li);
@@ -466,6 +479,7 @@ $(document).ready(function () {
                 }).then(function (response) {
                     if (response.length === 0) {
                         var li = $("<li></li>");
+                        li.addClass("search-li-tags");
                         $(`#recipe-contents-1`).empty();
                         li.text("No instructions found");
                         $(`#recipe-contents-1`).append(li);
@@ -476,6 +490,7 @@ $(document).ready(function () {
 
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
+                                li.addClass("search-li-tags");
                                 li.text(response[k].steps[i].step);
                                 $(`#recipe-contents-1`).append(li);
 
@@ -492,6 +507,7 @@ $(document).ready(function () {
                                             foundIngredients.push(response[k].steps[i].ingredients[j].name);
                                             //console.log("after push", foundIngredients);
                                             let ingLi = $("<li></li>");
+                                            ingLi.addClass("search-li-tags");
                                             ingLi.text(response[k].steps[i].ingredients[j].name);
                                             ingLi.text(capitalizeFirstLetter(ingLi.text()));
                                             $(`#ingredients1`).append(ingLi);
@@ -532,6 +548,7 @@ $(document).ready(function () {
                     foundIngredients.push(response[4].missedIngredients[k].name);
                     //console.log(foundIngredients);
                     let li = $("<li></li>");
+                    li.addClass("search-li-tags");
                     li.text(response[4].missedIngredients[k].name);
                     li.text(capitalizeFirstLetter(li.text()));
                     $(`#ingredients1`).append(li);
@@ -548,6 +565,7 @@ $(document).ready(function () {
                 }).then(function (response) {
                     if (response.length === 0) {
                         var li = $("<li></li>");
+                        li.addClass("search-li-tags");
                         $(`#recipe-contents-1`).empty();
                         li.text("No instructions found");
                         $(`#recipe-contents-1`).append(li);
@@ -558,6 +576,7 @@ $(document).ready(function () {
 
                             for (var i = 0; i < numberOfSteps.length; i++) {
                                 var li = $("<li></li>");
+                                li.addClass("search-li-tags");
                                 li.text(response[k].steps[i].step);
                                 $(`#recipe-contents-1`).append(li);
 
@@ -574,6 +593,7 @@ $(document).ready(function () {
                                             foundIngredients.push(response[k].steps[i].ingredients[j].name);
                                             //console.log("after push", foundIngredients);
                                             let ingLi = $("<li></li>");
+                                            ingLi.addClass("search-li-tags");
                                             ingLi.text(response[k].steps[i].ingredients[j].name);
                                             ingLi.text(capitalizeFirstLetter(ingLi.text()));
                                             $(`#ingredients1`).append(ingLi);
@@ -587,6 +607,10 @@ $(document).ready(function () {
             });
         }
     });
+});
+
+$("#add-recipe-btn").on("click", function(){
+    createRecipeDialog();
 });
 
 
@@ -618,7 +642,7 @@ function createRecipeDialog() {
             .addEventListener('click', function () {
                 dialog.close();
             });
-    });
+    }());
 }
 
 function addSaveButtonClickListener() {
