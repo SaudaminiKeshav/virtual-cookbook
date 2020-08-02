@@ -928,7 +928,7 @@ $("body").on("click", ".openButton", function() {
     console.log(event.target.value);
     console.log(Recipes);
     console.log(SearchedRecipes);
-    for (i = 0; i < Recipes.length; i ++) {
+    for (i = 0; i < Recipes.length; i++) {
         if (Recipes[i].key.includes(event.target.value)) {
             let name = event.target.value;
             console.log("inclded in Recipes");
